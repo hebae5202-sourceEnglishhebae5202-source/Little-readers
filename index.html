@@ -5,24 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PHONICS FUN WITH DINO</title>
 <style>
-*{box-sizing:border-box;font-family:system-ui,Arial} body{margin:0;background:#FFF8E7;color:#222}
-header{background:#FF6B6B;color:#fff;padding:22px 16px;text-align:center;border-radius:0 0 24px 24px}
-header h1{margin:0;font-size:28px}
+*{box-sizing:border-box;font-family:system-ui,Arial}
+body{margin:0;background:#FFF8E7;color:#222;overflow-x:hidden}
+header{background:linear-gradient(90deg,#FF6B6B,#FFA726);color:#fff;padding:26px 16px;text-align:center;border-radius:0 0 28px 28px;animation:slideDown 0.8s ease}
+@keyframes slideDown{from{transform:translateY(-30px);opacity:0}to{transform:translateY(0);opacity:1}}
+header h1{margin:0;font-size:30px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.dino{font-size:48px;display:inline-block;animation:wiggle 1.5s infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
 .wrap{max-width:900px;margin:auto;padding:16px}
-.card{background:#fff;border:2px solid #FFE082;border-radius:18px;padding:16px;margin:14px 0}
-.btn{background:#4CAF50;color:#fff;border:0;padding:12px 18px;border-radius:12px;font-size:16px;cursor:pointer;margin:4px}
+.card{background:#fff;border:2px solid #FFE082;border-radius:20px;padding:18px;margin:16px 0;box-shadow:0 6px 16px rgba(0,0,0,0.08);animation:fadeUp 0.6s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.card h2{margin-top:0}
+.btn{background:#4CAF50;color:#fff;border:0;padding:12px 18px;border-radius:14px;font-size:16px;cursor:pointer;margin:4px;transition:0.2s}
+.btn:hover{transform:scale(1.07)}
 .btn2{background:#2196F3}
+.btn3{background:#FF9800}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.grid{grid-template-columns:1fr}}
-.word{background:#F8F9FA;border-radius:12px;padding:12px;text-align:center}
-.word b{font-size:22px;display:block} .word span{font-size:28px}
+.word{background:#F8F9FA;border-radius:14px;padding:14px;text-align:center;transition:0.2s}
+.word:hover{transform:scale(1.04);background:#FFF3E0}
+.word b{font-size:22px;display:block}
+.word span{font-size:30px}
 .sent{background:#E8F5E9;border-radius:12px;padding:12px;margin:8px 0;font-size:18px}
-.flash{background:#E3F2FD;border-radius:18px;padding:26px;text-align:center;font-size:32px;font-weight:800;min-height:120px;display:flex;align-items:center;justify-content:center}
-.stars{font-size:26px;text-align:center}
+.sent:hover{background:#C8E6C9}
+.flash{background:linear-gradient(135deg,#E3F2FD,#FFF9C4);border-radius:20px;padding:28px;text-align:center;font-size:32px;font-weight:800;min-height:120px;display:flex;align-items:center;justify-content:center;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+.stars{font-size:26px;text-align:center;animation:bounce 2s infinite}
+.rainbow{background:linear-gradient(90deg,red,orange,green,blue,purple);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}
 </style>
 </head>
 <body>
-<header><h1>🦖 PHONICS FUN WITH DINO 🦖</h1><p>Let's read English while we play!</p></header>
+<header><div class="dino">🦖</div><h1>PHONICS FUN WITH DINO</h1><p>Let's read English while we play!</p></header>
 <div class="wrap">
 
 <div class="card"><h2>✨ Your Journey With Dino</h2>
@@ -33,7 +47,12 @@ header h1{margin:0;font-size:28px}
 <p><b>🎁 170 words + 85 sentences + interactive game</b></p></div>
 
 <div class="card"><h2>🔴 Station 1: Vowel World</h2>
-<button class="btn" onclick="speak('A')">A</button> <button class="btn" onclick="speak('E')">E</button> <button class="btn" onclick="speak('I')">I</button> <button class="btn" onclick="speak('O')">O</button> <button class="btn" onclick="speak('U')">U</button></div>
+<button class="btn" onclick="speak('A')">A</button>
+<button class="btn" onclick="speak('E')">E</button>
+<button class="btn" onclick="speak('I')">I</button>
+<button class="btn" onclick="speak('O')">O</button>
+<button class="btn" onclick="speak('U')">U</button>
+<p>Tap a letter to hear its sound! 🔊</p></div>
 
 <div class="card"><h2>🟠 Station 2: Words</h2>
 <p><b>oo - Two columns:</b></p>
@@ -45,4 +64,34 @@ header h1{margin:0;font-size:28px}
 <div class="card"><h2>🟢 Station 3: Sentences</h2><div id="sentences"></div></div>
 
 <div class="card"><h2>🏆 Station 4: Big Challenge - Final</h2>
-<p>15 sentences - Read alone, superstar
+<p class="rainbow">15 sentences - Read alone, superstar!</p>
+<div id="finalSentences"></div>
+<div class="flash" id="flash">Press Next!</div>
+<p style="text-align:center"><button class="btn btn2" onclick="nextFlash()">Next ➡️</button> <button class="btn btn3" onclick="addStar()">⭐ Get a Star</button></p>
+<div class="stars" id="stars">⭐ Stars: 0</div><p style="text-align:center" id="superstar"></p></div>
+
+</div>
+<script>
+const ooLong=["moon","soon","food","pool","cool","zoo","room","boot","tooth","spoon"];
+const ooShort=["book","look","cook","good","foot","wood","took","hook","wool","stood"];
+const aiW=["rain","paint","train","snail","sail","tail","mail","chain","brain","wait"];
+const ayW=["play","day","say","way","stay","pay","may","bay","clay","tray"];
+const allWordsData=[["cat","🐱"],["dog","🐶"],["bee","🐝"],["hen","🐔"],["pig","🐷"],["fox","🦊"],["cow","🐄"],["fish","🐟"],["sun","☀️"],["moon","🌙"],["bed","🛏️"],["milk","🥛"],["cake","🍰"],["bike","🚲"],["nose","👃"],["kite","🪁"],["rose","🌹"],["cube","🧊"],["tube","🧪"],["mule","🐴"]];
+const sentencesData=["The dog sits on the bed.","The cat runs to the sun.","The bee sees the pig.","The hen sits on the bed.","The fox runs in the sun.","The cow walks out in the town.","The snail waits in the rain.","The moon shines in the night.","Six fish swim in the milk.","The brown fox runs fast.","The big pig sits in the mud.","The red hen lays an egg.","The blue bike runs fast.","The cute dog plays in the park.","The milk is in the cup."];
+const finalData=["The dog sits on the bed.","The cat plays in the sun.","The bee flies to the rose.","The hen sits in the mud.","The pig runs to the farm.","Six fish swim in the milk.","The moon shines in the night.","The cow walks out in the town.","The snail waits in the rain.","The fox runs fast in the park.","The brown dog plays with the ball.","The red hen lays a big egg.","The blue bike is in the yard.","The cute cat drinks the milk.","I can read! I am a Superstar!"];
+function simple(list){return list.map(w=>`<div class="word"><b>${w}</b><br><button class="btn btn2" onclick="speak('${w}')">🔊</button></div>`).join('')}
+function card(list){return list.map(w=>`<div class="word"><span>${w[1]}</span><b>${w[0]}</b><br><button class="btn btn2" onclick="speak('${w[0]}')">🔊</button></div>`).join('')}
+document.getElementById('ooLong').innerHTML=simple(ooLong);
+document.getElementById('ooShort').innerHTML=simple(ooShort);
+document.getElementById('aiWords').innerHTML=simple(aiW);
+document.getElementById('ayWords').innerHTML=simple(ayW);
+document.getElementById('allWords').innerHTML=`<h3>All Words</h3><div class="grid">${card(allWordsData)}</div>`;
+document.getElementById('sentences').innerHTML=sentencesData.map(s=>`<div class="sent">${s} <button class="btn btn2" onclick="speak('${s}')">🔊</button></div>`).join('');
+document.getElementById('finalSentences').innerHTML=finalData.map((s,i)=>`<div class="sent"><b>${i+1}.</b> ${s} <button class="btn btn2" onclick="speak('${s}')">🔊</button></div>`).join('');
+let fi=0, stars=0;
+function nextFlash(){fi=(fi+1)%finalData.length; document.getElementById('flash').textContent=finalData[fi]; speak(finalData[fi]);}
+function addStar(){stars++; document.getElementById('stars').textContent='⭐ Stars: '+stars; if(stars>=5) document.getElementById('superstar').innerHTML='🏆 You are the Superstar! 🎉';}
+function speak(t){try{let u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=0.85; speechSynthesis.speak(u);}catch(e){}}
+</script>
+</body>
+</html>
