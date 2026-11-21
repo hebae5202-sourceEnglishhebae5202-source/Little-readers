@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reading Fun - Milo Adventure!</title>
-<meta property="og:title" content="Reading Fun with Milo! 🌈">
-<meta property="og:description" content="Listen, Repeat, Collect Stars! Let's Learn Reading Together!">
-<meta property="og:image" content="https://hebae5202-sourceenglishhebae5202-source.github.io/Little-readers/cover.jpg">
-<meta property="og:url" content="https://hebae5202-sourceenglishhebae5202-source.github.io/Little-readers/">
 <style>
 *{box-sizing:border-box;font-family:'Comic Sans MS',Arial,sans-serif}
 body{margin:0;background:linear-gradient(#FFE9F5,#FFF7E6,#D9F0FF);text-align:center;padding:14px;overflow-x:hidden}
@@ -20,65 +16,4 @@ h1{font-size:36px;color:#FF4D8D;animation:bounce 1.5s infinite}
 .vowel-box{display:inline-block;width:64px;height:64px;line-height:64px;border-radius:50%;font-size:32px;font-weight:bold;color:#fff;margin:5px;border:3px solid white;animation:wiggle 1.2s infinite}
 .a{background:#FF4D6D}.e{background:#FF9F1C}.i{background:#4361EE}.o{background:#2EC4B6}.u{background:#9B5DE5}
 .big{font-size:90px;animation:bounce 1.2s infinite}
-.word{font-size:40px;font-weight:bold;color:#FF4D6D}
-.sentence{font-size:23px;background:white;border-radius:16px;padding:14px;margin:12px 0}
-button{border:none;border-radius:999px;padding:15px 24px;font-size:19px;font-weight:bold;cursor:pointer;margin:5px;color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.18)}
-button:active{transform:translateY(4px);box-shadow:none}
-.listen{background:#4361EE}.next{background:#2EC4B6}.prev{background:#FF9F1C}.nav{background:#FF4D6D}
-.enc{font-size:26px;color:#FF4D6D;font-weight:bold;min-height:34px}
-.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
-.tab{background:white;color:#333;border:2px solid #FFD6E0}.tab.active{background:#FF4D6D;color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.item{background:white;border-radius:18px;padding:14px;border:3px solid #FFE3EE}
-.item b{font-size:24px}.small{font-size:15px;color:#666}
-.milo{font-size:90px;animation:wiggle 1s infinite}
-.stars{font-size:26px;background:white;border-radius:999px;padding:8px 16px;display:inline-block}
-#confetti{position:fixed;inset:0;pointer-events:none;font-size:32px;display:none}
-</style>
-</head>
-<body>
-<div id="confetti">🎉 ⭐ 🎊 🌟 🎈 🎉 ⭐ 🎊</div>
-<h1>🌈 Reading Fun with Milo! 🌈</h1>
-<div class="milo">🦖</div>
-<h2 style="color:#4361EE">Hi! I am Milo! Let's Learn Together!</h2>
-<div class="stars">⭐ Stars: <span id="starCount">0</span> / 10 🏆</div>
-<p style="font-size:20px"><b>Listen, Repeat, Collect Stars!</b></p>
-<div class="card pink"><h2>⭐ What are Vowels? ⭐</h2><div class="big">🎨 📚</div><p style="font-size:21px">We have <b>5 SUPER STARS</b>!<br>They are called <b>VOWELS</b>!</p><div><span class="vowel-box a">A</span><span class="vowel-box e">E</span><span class="vowel-box i">I</span><span class="vowel-box o">O</span><span class="vowel-box u">U</span></div><p style="font-size:20px">Without vowels, we cannot read!<br>Milo says: <b>You are a Super Star!</b> 🌟</p><button class="listen" onclick="speak('A E I O U are vowels. They are super stars!')">🔊 Listen</button></div>
-<div class="card yellow"><h2>⚡ Short Vowel = Quick Sound!</h2><div class="big">🐱 🛏️ 🐷</div><p style="font-size:21px">Short sound is <b>short and quick</b>!<br>Tap! Tap! Tap!</p><p style="font-size:22px"><b>Cat</b> - a &nbsp;|&nbsp; <b>Bed</b> - e</p><button class="listen" onclick="speak('Short vowel is a quick sound. Cat. Bed.')">🔊 Listen</button></div>
-<div class="card blue"><h2>🌟 Long Vowel = Long Sound!</h2><div class="big">🎂 🚲 🦄</div><p style="font-size:21px">Long sound is <b>long</b>!<br>The letter <b>says its name</b>!</p><p style="font-size:22px"><b>Cake</b> - A &nbsp;|&nbsp; <b>Bike</b> - I</p><button class="listen" onclick="speak('Long vowel is a long sound. Cake. Bike.')">🔊 Listen</button></div>
-<div class="card green"><h2>🎮 Play with Milo!</h2><div class="tabs" id="tabs"></div><div id="stage"></div><div class="enc" id="enc">Milo says: You can do it! 💪</div><button class="prev" onclick="prev()">⬅ Back</button><button class="listen" onclick="speakCurrent()">🔊 Listen</button><button class="next" onclick="next()">Next ➡</button><br><button class="nav" onclick="earnStar()">⭐ I Said It! Give Me a Star!</button></div>
-<div class="card purple"><h2>👁️ Sight Words - Magic Words!</h2><div class="big">🪄 ✨</div><p style="font-size:21px"><b>Magic Words! We cannot sound them out!</b><br>We just <b>MEMORIZE</b> them!<br>Milo says: Just remember me!</p><div class="grid" id="sight"></div></div>
-<div class="card orange"><h2>🤝 Digraphs - Best Friends!</h2><div class="big">👯‍♀️ 💕</div><p style="font-size:21px"><b>Two letters, ONE sound!</b><br>They are best friends forever!</p><div class="grid" id="dig"></div></div>
-<div class="card pink"><h2>🏆 You Are a Super Reader!</h2><div class="big">🏆 🌟 🎉</div><p style="font-size:22px">Great Job! ⭐<br>You are a Super Star! 🌟<br>Awesome! Keep Going! 🎉<br>Milo is SO proud of you! 🦖❤️</p><button class="nav" onclick="celebrate()">🎊 CELEBRATE!</button></div>
-<script>
-let stars=0;
-const data={
-"Short A 🐱":{img:"🐱",word:"Cat",sentences:["The cat sat on the mat.","Dad has a red cap.","Sam can pat the ram.","The fat cat has a hat.","Nan can tap the pan."]},
-"Short E 🛏️":{img:"🛏️",word:"Bed",sentences:["The hen is in the pen.","Ben has ten pens.","The red bed is big.","Ted can get the pen.","Meg has a wet net."]},
-"Short I 🐷":{img:"🐷",word:"Pig",sentences:["The pig is big.","Tim can sit in the pit.","The kid has a pin.","Jim can hit the ball.","The fish is in the dish."]},
-"Short O 🐶":{img:"🐶",word:"Dog",sentences:["The dog is on the log.","Tom has a hot pot.","The fox is in the box.","Mom has a red mop.","The frog can hop."]},
-"Short U 🚌":{img:"🚌",word:"Bus",sentences:["The bus is fun.","Gus can run to the hut.","The cub is in the tub.","The sun is up.","Bud has a cup."]},
-"Long A 🎂":{img:"🎂",word:"Cake",sentences:["I can make a cake.","Jake has a cake.","The snake is in the lake.","Kate can bake a cake.","Take the cake to Dave."]},
-"Long E 🐝":{img:"🐝",word:"Bee",sentences:["The bee can see me.","We can see the tree.","Pete can feed the sheep.","The green tree is tall.","Keep the sweet seed."]},
-"Long I 🚲":{img:"🚲",word:"Bike",sentences:["I can ride my bike.","Mike likes his bike.","The bike is by the pine.","I like to ride at five.","The kite can fly high."]},
-"Long O 🐐":{img:"🐐",word:"Goat",sentences:["The goat is on the boat.","Rose has a rose.","The nose knows.","I can go home.","The stone is on the bone."]},
-"Long U 🦄":{img:"🦄",word:"Unicorn",sentences:["The unicorn is cute.","June can use the flute.","The mule is cute.","You can use the blue cube.","The tune is fun."]}
-};
-let keys=Object.keys(data), currentKey=keys[0], idx=0;
-const tabsEl=document.getElementById('tabs');
-keys.forEach(k=>{let b=document.createElement('button');b.textContent=k;b.className='tab'+(k===currentKey?' active':'');b.onclick=()=>{currentKey=k;idx=0;render();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');};tabsEl.appendChild(b);});
-function render(){let d=data[currentKey];document.getElementById('stage').innerHTML=`<div class="big">${d.img}</div><div class="word">${d.word}</div><div class="sentence">${d.sentences[idx]}</div><div class="small">Sentence ${idx+1} of ${d.sentences.length}</div>`;}
-function speak(t){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.rate=0.50;u.lang='en-US';speechSynthesis.speak(u);}
-function speakCurrent(){speak(data[currentKey].sentences[idx]);}
-function next(){let d=data[currentKey];if(idx<d.sentences.length-1){idx++;}else{idx=0;}render();speakCurrent();}
-function prev(){if(idx>0)idx--;render();speakCurrent();}
-function celebrate(){let c=document.getElementById('confetti');c.style.display='block';setTimeout(()=>c.style.display='none',2000);speak('Yay! You are amazing! Great job!');}
-function earnStar(){stars++;document.getElementById('starCount').textContent=stars;let encs=["Great Job! ⭐","You are a Super Star! 🌟","Awesome! Keep Going! 🎉","Wow! You did it! 👏","Milo is so proud! 🦖❤️"];document.getElementById('enc').textContent=encs[Math.floor(Math.random()*encs.length)];celebrate();if(stars>=10){alert('🏆 WOW! You collected 10 stars! You are a SUPER READER!');stars=0;document.getElementById('starCount').textContent=0;}}
-render();
-const sights=[["the","🐻","The cat is here."],["said","💬","She said hello."],["you","😊","You are my friend."],["was","⭐","I was happy."],["are","🌈","You are great."],["have","🎁","I have a ball."],["come","🏃","Come here, please."],["some","🍎","I want some apples."]];
-document.getElementById('sight').innerHTML=sights.map(s=>`<div class="item"><div style="font-size:40px">${s[1]}</div><b>${s[0]}</b><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[2]}')">🔊</button></div>`).join('');
-const digs=[["ch","🪑 chair","The chair is big."],["sh","🚢 ship","The ship is in the sea."],["th","🦷 teeth","Brush your teeth."],["wh","🐳 whale","The whale is big."],["ph","📞 phone","Ring the phone."],["ck","🦆 duck","The duck is in the pond."],["ng","👑 king","The king is happy."],["oo","🌕 moon","The moon is bright."]];
-document.getElementById('dig').innerHTML=digs.map(s=>`<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[0]}. ${s[1]}. ${s[2]}')">🔊</button></div>`).join('');
-</script>
-</body>
-</html>
+.word{
