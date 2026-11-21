@@ -77,12 +77,12 @@ document.getElementById('sight').innerHTML=sights.map(s=>`<div class="item"><div
 const digs=[["ch","🪑 chair","The chair is big."],["sh","🚢 ship","The ship is in the sea."],["th","🦷 teeth","Brush your teeth."],["wh","🐳 whale","The whale is big."],["ph","📞 phone","Ring the phone."],["ck","🦆 duck","The duck is in the pond."],["ng","👑 king","The king is happy."]];
 document.getElementById('dig').innerHTML=digs.map(s=>{
   let word=s[1].replace(/[^A-Za-z ]/g,'').trim().split(' ').pop();
-  return `<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[0]} as in ${word}. ${s[2]}')">🔊</button></div>`;
+  return `<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${word}. ${word}. ${s[2]}')">🔊</button></div>`;
 }).join('');
 const diphs=[["oo","🌕 moon","The moon is bright."],["oi","🪙 coin","I have a coin."],["oy","🧒 boy","The boy is happy."],["ou","☁️ cloud","Look at the cloud."],["ow","🐄 cow","The cow says moo."],["au","🥫 sauce","I like sauce."],["aw","🐾 paw","The cat has a paw."],["ea","🍞 bread","I eat bread."]];
 document.getElementById('diph').innerHTML=diphs.map(s=>{
   let word=s[1].replace(/[^A-Za-z ]/g,'').trim().split(' ').pop();
-  return `<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[0]} as in ${word}. ${s[2]}')">🔊</button></div>`;
+  return `<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${word}. ${word}. ${s[2]}')">🔊</button></div>`;
 }).join('');
 </script>
 </body>
