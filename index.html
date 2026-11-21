@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reading Fun - Milo Adventure!</title>
+<meta property="og:title" content="Reading Fun with Milo! 🌈">
+<meta property="og:description" content="Listen, Repeat, Collect Stars! Let's Learn Reading Together!">
+<meta property="og:image" content="https://hebae5202-sourceenglishhebae5202-source.github.io/Little-readers/cover.jpg">
+<meta property="og:url" content="https://hebae5202-sourceenglishhebae5202-source.github.io/Little-readers/">
 <style>
 *{box-sizing:border-box;font-family:'Comic Sans MS',Arial,sans-serif}
 body{margin:0;background:linear-gradient(#FFE9F5,#FFF7E6,#D9F0FF);text-align:center;padding:14px;overflow-x:hidden}
@@ -64,7 +68,7 @@ let keys=Object.keys(data), currentKey=keys[0], idx=0;
 const tabsEl=document.getElementById('tabs');
 keys.forEach(k=>{let b=document.createElement('button');b.textContent=k;b.className='tab'+(k===currentKey?' active':'');b.onclick=()=>{currentKey=k;idx=0;render();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');};tabsEl.appendChild(b);});
 function render(){let d=data[currentKey];document.getElementById('stage').innerHTML=`<div class="big">${d.img}</div><div class="word">${d.word}</div><div class="sentence">${d.sentences[idx]}</div><div class="small">Sentence ${idx+1} of ${d.sentences.length}</div>`;}
-function speak(t){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.rate=.75;u.lang='en-US';speechSynthesis.speak(u);}
+function speak(t){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.rate=0.50;u.lang='en-US';speechSynthesis.speak(u);}
 function speakCurrent(){speak(data[currentKey].sentences[idx]);}
 function next(){let d=data[currentKey];if(idx<d.sentences.length-1){idx++;}else{idx=0;}render();speakCurrent();}
 function prev(){if(idx>0)idx--;render();speakCurrent();}
@@ -74,7 +78,7 @@ render();
 const sights=[["the","🐻","The cat is here."],["said","💬","She said hello."],["you","😊","You are my friend."],["was","⭐","I was happy."],["are","🌈","You are great."],["have","🎁","I have a ball."],["come","🏃","Come here, please."],["some","🍎","I want some apples."]];
 document.getElementById('sight').innerHTML=sights.map(s=>`<div class="item"><div style="font-size:40px">${s[1]}</div><b>${s[0]}</b><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[2]}')">🔊</button></div>`).join('');
 const digs=[["ch","🪑 chair","The chair is big."],["sh","🚢 ship","The ship is in the sea."],["th","🦷 teeth","Brush your teeth."],["wh","🐳 whale","The whale is big."],["ph","📞 phone","Ring the phone."],["ck","🦆 duck","The duck is in the pond."],["ng","👑 king","The king is happy."],["oo","🌕 moon","The moon is bright."]];
-document.getElementById('dig').innerHTML=digs.map(s=>`<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[2]}')">🔊</button></div>`).join('');
+document.getElementById('dig').innerHTML=digs.map(s=>`<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[0]}. ${s[1]}. ${s[2]}')">🔊</button></div>`).join('');
 </script>
 </body>
 </html>
