@@ -1,55 +1,142 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Little Readers - Phonics</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Readers - Vowel World</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#E8F6FF}
-.top{background:#FFD93D;text-align:center;padding:18px;border:4px solid #FF6B6B;border-radius:0 0 20px 20px}
-.top h1{margin:0;font-size:34px;color:#FF6B6B}.top p{margin:5px}
-.wrap{max-width:950px;margin:auto;padding:15px}
-.station{background:#fff;border:4px solid #FFD93D;border-radius:20px;padding:18px;margin:18px 0}
-.station h2{margin:0 0 10px;color:#FF6B6B;font-size:26px}
-.vowels{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.vowel{width:110px;text-align:center;border-radius:15px;padding:12px;color:#fff;font-weight:900}.vowel span{font-size:42px;display:block}.vowel small{font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.box{border:2px solid #FFD93D;border-radius:15px;padding:12px;background:#FFFBEA}.box h3{margin:0 0 6px;color:#FF6B6B}.box p{margin:0;line-height:1.7}
-button{background:#4ECDC4;border:none;color:#fff;padding:8px 14px;border-radius:20px;font-weight:700;cursor:pointer;margin:4px}
-.cat{font-size:18px;font-weight:700;color:#333}
-</style></head><body>
-<div class="top"><h1>🌟 Little Readers 🌟</h1><p>Phonics Fun for Kids - Learn to Read!</p><p>🦕 🚀 📚</p></div>
-<div class="wrap">
+*{box-sizing:border-box;font-family:'Comic Sans MS',Arial}
+body{margin:0;background:#FFF7ED;color:#333}
+header{background:linear-gradient(90deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF);padding:20px;text-align:center;color:white}
+header h1{margin:0;font-size:32px;text-shadow:1px 1px 0 #00000022}
+header p{margin:5px 0 0}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:15px;background:white;position:sticky;top:0;z-index:10}
+nav button{border:none;padding:12px 18px;border-radius:25px;font-size:16px;font-weight:bold;cursor:pointer;background:#FFE8CC}
+nav button.active{background:#FF6B6B;color:white}
+section{max-width:1000px;margin:0 auto;padding:20px;display:none}
+section.active{display:block}
+.hero{text-align:center}
+.vowels{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin:20px 0}
+.vowel-card{width:150px;background:white;border-radius:20px;padding:15px;text-align:center;box-shadow:0 4px 10px #00000015;animation:bounce 2s infinite}
+.vowel-card:nth-child(2){animation-delay:.2s}.vowel-card:nth-child(3){animation-delay:.4s}.vowel-card:nth-child(4){animation-delay:.6s}.vowel-card:nth-child(5){animation-delay:.8s}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.vowel-card .big{font-size:55px;font-weight:900}
+.vowel-card .face{font-size:35px}
+.card{background:white;border-radius:20px;padding:20px;margin-bottom:20px;box-shadow:0 4px 12px #00000010}
+.card h2{margin-top:0}
+.words{display:flex;flex-wrap:wrap;gap:10px}
+.word{background:#FFF3CD;border:2px dashed #FFB703;border-radius:15px;padding:10px 12px;text-align:center;min-width:110px}
+.word b{display:block;font-size:19px}
+button.speak{border:none;padding:6px 10px;border-radius:20px;cursor:pointer;margin:3px;font-weight:bold}
+.slow{background:#D3F8D3}.fast{background:#FFE0E0}
+.sent{background:#F0F7FF;border-radius:15px;padding:12px;margin:8px 0}
+.sight{display:flex;flex-wrap:wrap;gap:12px}
+.sight div{background:#E0F7FA;border-radius:15px;padding:15px;text-align:center;width:130px}
+.sight b{font-size:22px;display:block}
+.quiz-q{background:white;border-radius:20px;padding:18px;margin-bottom:15px}
+.quiz-q button{display:block;width:100%;text-align:left;padding:12px;margin:6px 0;border:2px solid #eee;border-radius:12px;background:#FFF9DB;cursor:pointer;font-size:16px}
+.quiz-q button.correct{background:#B7F5B7}.quiz-q button.wrong{background:#FFC2C2}
+#score{font-size:22px;font-weight:bold;text-align:center;padding:15px;background:#D3F8D3;border-radius:15px;display:none}
+footer{text-align:center;padding:20px;color:#888}
+</style>
+</head>
+<body>
+<header><h1>🌟 Little Readers - Vowel World 🌟</h1><p>Learn • Play • Read - مع هبة</p></header>
+<nav>
+<button class="active" onclick="show('short',this)">1. Short Vowels 🔤</button>
+<button onclick="show('long',this)">2. Long Vowels 🎈</button>
+<button onclick="show('sight',this)">3. Sight Words 👀</button>
+<button onclick="show('quiz',this)">4. المسابقة 🏆</button>
+</nav>
 
-<div class="station"><h2>🚂 Station 1: Vowel World</h2><p>Click a vowel to hear it!</p>
+<!-- SHORT -->
+<section id="short" class="active">
+<div class="hero"><h2>Short Vowels - الأصوات القصيرة</h2><p>اسمع بطيء 🐢 الأول وبعدين سريع 🐇</p></div>
 <div class="vowels">
-<div class="vowel" style="background:#FF6B6B"><span>A a</span><small>Short a - cat<br>Long a - cake</small><br><button onclick="speak('A a cat cake')">🔊</button></div>
-<div class="vowel" style="background:#FF9F43"><span>E e</span><small>Short e - bed<br>Long e - bee</small><br><button onclick="speak('E e bed bee')">🔊</button></div>
-<div class="vowel" style="background:#4ECDC4"><span>I i</span><small>Short i - pig<br>Long i - bike</small><br><button onclick="speak('I i pig bike')">🔊</button></div>
-<div class="vowel" style="background:#A78BFA"><span>O o</span><small>Short o - dog<br>Long o - nose</small><br><button onclick="speak('O o dog nose')">🔊</button></div>
-<div class="vowel" style="background:#FF6B9D"><span>U u</span><small>Short u - sun<br>Long u - cube</small><br><button onclick="speak('U u sun cube')">🔊</button></div>
-</div></div>
-
-<div class="station"><h2>🚂 Station 2: Words - Digraphs & Diphthongs</h2>
-<p>Words with two letters making one sound!</p>
-<div class="grid">
-<div class="box"><h3>oo - moon</h3><p>moon 🌙 - spoon 🥄 - book 📖 - foot 🦶 - cool 😎 - school 🏫 - good 👍 - food 🍔 - zoo 🦁 - room 🚪</p><button onclick="speak('moon spoon book foot cool school good food zoo room')">🔊 Listen</button></div>
-<div class="box"><h3>ow - cow</h3><p>cow 🐄 - now - how - owl 🦉 - town 🏘️ - brown 🤎 - down ⬇️ - clown 🤡 - flower 🌸 - shower 🚿</p><button onclick="speak('cow now how owl town brown down clown flower shower')">🔊 Listen</button></div>
-<div class="box"><h3>au - sauce</h3><p>sauce - cause - pause - launch 🚀 - August - author ✍️ - autumn 🍂 - fault - haul - maul</p><button onclick="speak('sauce cause pause launch August author autumn fault haul maul')">🔊 Listen</button></div>
-<div class="box"><h3>ou - cloud</h3><p>cloud ☁️ - out - house 🏠 - mouse 🐭 - mouth 👄 - sound 🔊 - found - ground - proud - round</p><button onclick="speak('cloud out house mouse mouth sound found ground proud round')">🔊 Listen</button></div>
-<div class="box"><h3>sh - ship</h3><p>ship 🚢 - fish 🐟 - shop 🛍️ - wash 🧼 - brush 🪥 - fresh - shell 🐚 - shark 🦈 - sheep 🐑 - shoes 👟</p><button onclick="speak('ship fish shop wash brush fresh shell shark sheep shoes')">🔊 Listen</button></div>
-<div class="box"><h3>ch - cheese</h3><p>cheese 🧀 - chair 🪑 - chicken 🍗 - chin - lunch 🍱 - branch 🌿 - church ⛪ - peach 🍑 - beach 🏖️ - teacher 👩‍🏫</p><button onclick="speak('cheese chair chicken chin lunch branch church peach beach teacher')">🔊 Listen</button></div>
-<div class="box"><h3>th - this / thumb</h3><p>this - that - thumb 👍 - three 3️⃣ - think 🤔 - bath 🛁 - teeth 🦷 - thank - mother 👩 - father 👨</p><button onclick="speak('this that thumb three think bath teeth thank mother father')">🔊 Listen</button></div>
-<div class="box"><h3>ph - phone</h3><p>phone 📱 - photo 📷 - elephant 🐘 - dolphin 🐬 - graph - trophy 🏆 - alphabet 🔤 - phantom 👻 - phrase - pharmacy 💊</p><button onclick="speak('phone photo elephant dolphin graph trophy alphabet phantom phrase pharmacy')">🔊 Listen</button></div>
-<div class="box"><h3>wh - whale</h3><p>whale 🐋 - wheel - white 🤍 - what - when - where - why - whisper 🤫 - whistle - wheat 🌾</p><button onclick="speak('whale wheel white what when where why whisper whistle wheat')">🔊 Listen</button></div>
-<div class="box"><h3>oi / oy - coin / boy</h3><p>coin 🪙 - oil 🛢️ - boil - point 👉 - voice 🎤 - boy 👦 - toy 🧸 - joy 😊 - enjoy - employ</p><button onclick="speak('coin oil boil point voice boy toy joy enjoy employ')">🔊 Listen</button></div>
-</div>
+<div class="vowel-card"><div class="face">😊</div><div class="big" style="color:#FF6B6B">A a</div><div>/æ/ cat</div></div>
+<div class="vowel-card"><div class="face">😄</div><div class="big" style="color:#FFA500">E e</div><div>/e/ bed</div></div>
+<div class="vowel-card"><div class="face">😍</div><div class="big" style="color:#6BCB77">I i</div><div>/ɪ/ pig</div></div>
+<div class="vowel-card"><div class="face">🤩</div><div class="big" style="color:#4D96FF">O o</div><div>/ɒ/ dog</div></div>
+<div class="vowel-card"><div class="face">🥰</div><div class="big" style="color:#9B5DE5">U u</div><div>/ʌ/ sun</div></div>
 </div>
 
-<div class="station"><h2>🚂 Station 3: Sentences</h2>
-<p><b>A cat sat on a mat.</b> <button onclick="speak('A cat sat on a mat')">🔊</button></p>
-<p><b>The moon is cool.</b> <button onclick="speak('The moon is cool')">🔊</button></p>
-<p><b>The cow is brown.</b> <button onclick="speak('The cow is brown')">🔊</button></p>
-<p><b>I see a fish in the ship.</b> <button onclick="speak('I see a fish in the ship')">🔊</button></p>
-</div>
+<div class="card"><h2>🅰️ Short A - cat</h2><div class="words" id="shortA"></div><div id="shortA-sent"></div></div>
+<div class="card"><h2>🅴️ Short E - bed</h2><div class="words" id="shortE"></div><div id="shortE-sent"></div></div>
+<div class="card"><h2>🅸️ Short I - pig</h2><div class="words" id="shortI"></div><div id="shortI-sent"></div></div>
+<div class="card"><h2>🅾️ Short O - dog</h2><div class="words" id="shortO"></div><div id="shortO-sent"></div></div>
+<div class="card"><h2>🆄️ Short U - sun</h2><div class="words" id="shortU"></div><div id="shortU-sent"></div></div>
+</section>
 
+<!-- LONG -->
+<section id="long">
+<div class="hero"><h2>Long Vowels - الأصوات الطويلة</h2><p>نفس الطريقة - كارتون + كلمات + جمل</p></div>
+<div class="vowels">
+<div class="vowel-card"><div class="face">🎂</div><div class="big" style="color:#FF6B6B">A a</div><div>/eɪ/ cake</div></div>
+<div class="vowel-card"><div class="face">🐝</div><div class="big" style="color:#FFA500">E e</div><div>/iː/ bee</div></div>
+<div class="vowel-card"><div class="face">🚲</div><div class="big" style="color:#6BCB77">I i</div><div>/aɪ/ bike</div></div>
+<div class="vowel-card"><div class="face">👃</div><div class="big" style="color:#4D96FF">O o</div><div>/oʊ/ nose</div></div>
+<div class="vowel-card"><div class="face">🧊</div><div class="big" style="color:#9B5DE5">U u</div><div>/juː/ cube</div></div>
 </div>
+<div class="card"><h2>🅰️ Long A - cake</h2><div class="words" id="longA"></div><div id="longA-sent"></div></div>
+<div class="card"><h2>🅴️ Long E - bee</h2><div class="words" id="longE"></div><div id="longE-sent"></div></div>
+<div class="card"><h2>🅸️ Long I - bike</h2><div class="words" id="longI"></div><div id="longI-sent"></div></div>
+<div class="card"><h2>🅾️ Long O - nose</h2><div class="words" id="longO"></div><div id="longO-sent"></div></div>
+<div class="card"><h2>🆄️ Long U - cube</h2><div class="words" id="longU"></div><div id="longU-sent"></div></div>
+</section>
+
+<!-- SIGHT -->
+<section id="sight">
+<h2 style="text-align:center">👀 Sight Words - كلمات بتتحفظ بالشكل</h2>
+<p style="text-align:center">اسمعها واحفظ شكلها، مش بننطقها بالصوت</p>
+<div class="sight" id="sightBox"></div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+<h2 style="text-align:center">🏆 المسابقة - اختار الصح</h2>
+<div id="quizBox"></div>
+<div id="score"></div>
+<button onclick="checkQuiz()" style="display:block;margin:15px auto;padding:14px 30px;border:none;border-radius:25px;background:#FF6B6B;color:white;font-size:18px;font-weight:bold;cursor:pointer">شوف نتيجتك 🎉</button>
+</section>
+
+<footer>Made with ❤️ by Heba - Little Readers</footer>
 <script>
-function speak(t){let u=new SpeechSynthesisUtterance(t);u.rate=0.7;u.lang='en-US';speechSynthesis.cancel();speechSynthesis.speak(u)}
+function speak(t,rate){let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=rate;speechSynthesis.cancel();speechSynthesis.speak(u)}
+function wordBtns(w){return `<button class="speak slow" onclick="speak('${w}',0.55)">🐢 بطيء</button><button class="speak fast" onclick="speak('${w}',1)">🐇 سريع</button>`}
+function renderWords(id,arr){document.getElementById(id).innerHTML=arr.map(w=>`<div class="word"><b>${w}</b>${wordBtns(w)}</div>`).join('')}
+function renderSent(id,arr){document.getElementById(id).innerHTML='<h3>📖 الجمل:</h3>'+arr.map(s=>`<div class="sent"><b>${s}</b><br>${wordBtns(s)}</div>`).join('')}
+let data={
+shortA:{w:['cat','hat','bat','map','jam','bag','sad','ran','tap','van'],s:['The cat sat on the mat.','I have a red hat.','The bat is in the bag.','Sam ran to the van.','Dad put jam on the bread.']},
+shortE:{w:['bed','pen','ten','egg','hen','red','wet','leg','net','pet'],s:['The pen is red.','I have ten eggs.','The hen is on the bed.','My leg is wet.','This is my pet.']},
+shortI:{w:['pig','milk','fish','sit','big','lip','six','kid','pin','mix'],s:['The pig is big.','I drink milk.','The fish can swim.','Sit on the chair.','I have six pins.']},
+shortO:{w:['dog','box','hot','pot','mom','top','fox','rock','hop','not'],s:['The dog is hot.','Mom has a box.','The fox is on the rock.','Hop on the top.','The pot is not hot.']},
+shortU:{w:['sun','bus','cup','run','fun','hug','gum','duck','cut','nut'],s:['The sun is hot.','I run to the bus.','The cup is fun.','Hug the duck.','I cut the nut.']},
+longA:{w:['cake','name','game','plane','lake','snake','grape','plate','make','take'],s:['I like to make a cake.','My name is Sara.','We play a fun game.','The plane is in the sky.','The snake is near the lake.']},
+longE:{w:['bee','tree','see','green','feet','sleep','sweet','three','keep','read'],s:['I see a bee on the tree.','The tree is green.','I have two feet.','I sleep at night.','I read three books.']},
+longI:{w:['bike','like','five','kite','smile','time','nine','rice','nice','fine'],s:['I like my bike.','I have five kites.','She has a big smile.','It is time to play.','The rice is nice.']},
+longO:{w:['nose','rose','home','bone','stone','rope','note','go','no','open'],s:['My nose is small.','The rose is red.','We go home.','Open the note.','The dog has a bone.']},
+longU:{w:['cube','cute','use','music','huge','mule','tube','June','unit','student'],s:['The cube is cute.','I use the tube.','I like music.','June is a nice month.','I am a good student.']}
+};
+for(let k in data){renderWords(k,data[k].w);renderSent(k+'-sent',data[k].s)}
+let sights=['the','is','are','you','this','that','have','my','go','see','I','a','to','and','it','in','on','we','can','look'];
+document.getElementById('sightBox').innerHTML=sights.map(w=>`<div><b>${w}</b>${wordBtns(w)}</div>`).join('');
+let quiz=[
+{q:'اسمع: cat - فيها صوت ايه؟',opts:['Short A','Long A','Short E'],ans:0},
+{q:'أي كلمة فيها Long A؟',opts:['cake','cat','hat'],ans:0},
+{q:'كلمة bee فيها صوت ايه؟',opts:['Long E','Short E','Short I'],ans:0},
+{q:'أي كلمة فيها Short I؟',opts:['pig','bike','kite'],ans:0},
+{q:'كلمة dog فيها صوت ايه؟',opts:['Short O','Long O','Short U'],ans:0},
+{q:'أي كلمة فيها Long O؟',opts:['nose','dog','box'],ans:0},
+{q:'كلمة sun فيها صوت ايه؟',opts:['Short U','Long U','Short A'],ans:0},
+{q:'أي كلمة Sight Word؟',opts:['the','cat','dog'],ans:0},
+{q:'اختار الكلمة الصح للصورة 🐱',opts:['cat','dog','fish'],ans:0},
+{q:'اختار الجملة الصح',opts:['The cat sat on the mat.','Cat the sat mat on.','Sat cat the mat.'],ans:0}
+];
+document.getElementById('quizBox').innerHTML=quiz.map((qq,i)=>`<div class="quiz-q"><h3>${i+1}. ${qq.q} <button class="speak slow" onclick="speak('${qq.q}',0.6)">🔊 اسمع</button></h3>${qq.opts.map((o,j)=>`<button onclick="pick(this,${i},${j})">${o}</button>`).join('')}</div>`).join('');
+let picks={};
+function pick(btn,i,j){let q=btn.parentElement; q.querySelectorAll('button').forEach(b=>{if(b.classList.contains('speak'))return; b.classList.remove('correct','wrong')}); picks[i]=j; btn.classList.add('correct')}
+function checkQuiz(){let score=0; quiz.forEach((qq,i)=>{if(picks[i]===qq.ans)score++}); let s=document.getElementById('score'); s.style.display='block'; s.innerHTML=`نتيجتك: ${score} / ${quiz.length} ${score>=8?'🎉 ممتاز يا بطل!':score>=5?'👏 برافو، قربت!':'💪 حاول تاني، انت شاطر!'}`; speak(`Great! Your score is ${score} out of ${quiz.length}`,1)}
+function show(id,btn){document.querySelectorAll('section').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'})}
 </script>
-</body></html>
+</body>
+                                                   </html>
