@@ -7,12 +7,11 @@
 <style>
 *{box-sizing:border-box;font-family:system-ui,Arial} body{margin:0;background:#FFF8E7;color:#222}
 header{background:#FF6B6B;color:#fff;padding:22px 16px;text-align:center;border-radius:0 0 24px 24px}
-header h1{margin:0;font-size:28px} header p{margin:8px 0 0;opacity:.95}
+header h1{margin:0;font-size:28px}
 .wrap{max-width:900px;margin:auto;padding:16px}
-.card{background:#fff;border:2px solid #FFE082;border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 4px 0 #FFE082}
-h2{margin:0 0 8px} .pill{display:inline-block;background:#FFF3CD;padding:6px 12px;border-radius:999px;margin:4px;font-weight:700}
+.card{background:#fff;border:2px solid #FFE082;border-radius:18px;padding:16px;margin:14px 0}
 .btn{background:#4CAF50;color:#fff;border:0;padding:12px 18px;border-radius:12px;font-size:16px;cursor:pointer;margin:4px}
-.btn2{background:#2196F3} .btn3{background:#FF9800}
+.btn2{background:#2196F3}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.grid{grid-template-columns:1fr}}
 .word{background:#F8F9FA;border-radius:12px;padding:12px;text-align:center}
@@ -20,122 +19,30 @@ h2{margin:0 0 8px} .pill{display:inline-block;background:#FFF3CD;padding:6px 12p
 .sent{background:#E8F5E9;border-radius:12px;padding:12px;margin:8px 0;font-size:18px}
 .flash{background:#E3F2FD;border-radius:18px;padding:26px;text-align:center;font-size:32px;font-weight:800;min-height:120px;display:flex;align-items:center;justify-content:center}
 .stars{font-size:26px;text-align:center}
-.hidden{display:none}
 </style>
 </head>
 <body>
-<header>
-<h1>🦖 PHONICS FUN WITH DINO 🦖</h1>
-<p>خلي طفلك يقرأ إنجليزي وهو بيلعب!</p>
-</header>
-
+<header><h1>🦖 PHONICS FUN WITH DINO 🦖</h1><p>Let's read English while we play!</p></header>
 <div class="wrap">
-<div class="card">
-<h2>✨ رحلة طفلك مع Dino هتبدأ ازاي؟</h2>
-<p><b>🔴 أول محطة: عالم الفاولز</b><br>هنتعرف على الـ 5 أبطال الخارقين<br><span class="pill">A</span><span class="pill">E</span><span class="pill">I</span><span class="pill">O</span><span class="pill">U</span><br>ونعرف سر كل واحد فيهم!</p>
-<p><b>🟠 تاني محطة: الكلمات</b><br>كل صوت هنلعب عليه بـ 10 كلمات بالصور وبالصوت... اسمع، شوف، كرر!</p>
-<p><b>🟢 تالت محطة: الجمل</b><br>خلاص كبرنا! هنقرا جملة كاملة لوحدنا - 5 جمل على كل صوت، بالصور والنطق</p>
-<p><b>🏆 آخر محطة: التحدي الكبير</b><br>لعبة! Flashcards! نجوم! مين هيبقى الـ Superstar؟</p>
-<p><b>🎁 170 كلمة + 85 جملة + لعبة تفاعلية - كله في مكان واحد!</b></p>
-</div>
 
-<!-- STAGE 1 VOWELS -->
-<div class="card"><h2>🔴 أول محطة: عالم الفاولز</h2>
-<div id="vowels"></div>
-<p>دوس على أي حرف واسمع صوته: <button class="btn" onclick="speak('A')">A</button> <button class="btn" onclick="speak('E')">E</button> <button class="btn" onclick="speak('I')">I</button> <button class="btn" onclick="speak('O')">O</button> <button class="btn" onclick="speak('U')">U</button></p>
-</div>
+<div class="card"><h2>✨ Your Journey With Dino</h2>
+<p><b>🔴 Station 1: Vowel World</b><br>Meet the 5 Superheroes A - E - I - O - U</p>
+<p><b>🟠 Station 2: Words</b><br>10 words for every sound. Listen, look, repeat!</p>
+<p><b>🟢 Station 3: Sentences</b><br>5 sentences for every sound</p>
+<p><b>🏆 Station 4: Big Challenge</b><br>Game! Flashcards! Stars! Who will be the Superstar?</p>
+<p><b>🎁 170 words + 85 sentences + interactive game</b></p></div>
 
-<!-- STAGE 2 WORDS - SPLIT OO and AI/AY -->
-<div class="card"><h2>🟠 تاني محطة: الكلمات</h2>
-<p><b>تقسيمة oo - عمودين منفصلين عشان مفيش لخبطة:</b></p>
-<div class="grid">
-<div><h3>oo long - moon 🌙</h3><div id="ooLong"></div></div>
-<div><h3>oo short - book 📖</h3><div id="ooShort"></div></div>
-</div>
-<p><b>تقسيمة ai / ay - عمودين منفصلين:</b></p>
-<div class="grid">
-<div><h3>ai - rain 🌧️</h3><div id="aiWords"></div></div>
-<div><h3>ay - play ⚽</h3><div id="ayWords"></div></div>
-</div>
-<div id="allWords"></div>
-</div>
+<div class="card"><h2>🔴 Station 1: Vowel World</h2>
+<button class="btn" onclick="speak('A')">A</button> <button class="btn" onclick="speak('E')">E</button> <button class="btn" onclick="speak('I')">I</button> <button class="btn" onclick="speak('O')">O</button> <button class="btn" onclick="speak('U')">U</button></div>
 
-<!-- STAGE 3 SENTENCES -->
-<div class="card"><h2>🟢 تالت محطة: الجمل</h2>
-<div id="sentences"></div>
-</div>
+<div class="card"><h2>🟠 Station 2: Words</h2>
+<p><b>oo - Two columns:</b></p>
+<div class="grid"><div><h3>oo long - moon 🌙</h3><div id="ooLong"></div></div><div><h3>oo short - book 📖</h3><div id="ooShort"></div></div></div>
+<p><b>ai / ay - Two columns:</b></p>
+<div class="grid"><div><h3>ai - rain 🌧️</h3><div id="aiWords"></div></div><div><h3>ay - play ⚽</h3><div id="ayWords"></div></div></div>
+<div id="allWords"></div></div>
 
-<!-- FINAL - NEW, ADDED ONLY AT END -->
-<div class="card" style="border-color:#FF6B6B">
-<h2>🏆 آخر محطة: التحدي الكبير - Final</h2>
-<p>15 جملة - اقرأ لوحدك يا بطل!</p>
-<div id="finalSentences"></div>
-<div class="flash" id="flash">دوس على Next يا بطل!</div>
-<p style="text-align:center">
-<button class="btn btn2" onclick="nextFlash()">Next ➡️</button>
-<button class="btn" onclick="addStar()">⭐ خد نجمة</button>
-</p>
-<div class="stars" id="stars">⭐ النجوم: 0</div>
-<p style="text-align:center" id="superstar"></p>
-</div>
-</div>
+<div class="card"><h2>🟢 Station 3: Sentences</h2><div id="sentences"></div></div>
 
-<script>
-const ooLong=["moon","soon","food","pool","cool","zoo","room","boot","tooth","spoon"];
-const ooShort=["book","look","cook","good","foot","wood","took","hook","wool","stood"];
-const aiW=["rain","paint","train","snail","sail","tail","mail","chain","brain","wait"];
-const ayW=["play","day","say","way","stay","pay","may","bay","clay","tray"];
-const allWordsData=[
-["cat","🐱"],["dog","🐶"],["bee","🐝"],["hen","🐔"],["pig","🐷"],["fox","🦊"],["cow","🐄"],["fish","🐟"],["sun","☀️"],["moon","🌙"],
-["bed","🛏️"],["milk","🥛"],["cake","🍰"],["bike","🚲"],["nose","👃"],["kite","🪁"],["rose","🌹"],["cube","🧊"],["tube","🧪"],["mule","🐴"]
-];
-const sentencesData=[
-"The dog sits on the bed.",
-"The cat runs to the sun.",
-"The bee sees the pig.",
-"The hen sits on the bed.",
-"The fox runs in the sun.",
-"The cow walks out in the town.",
-"The snail waits in the rain.",
-"The moon shines in the night.",
-"Six fish swim in the milk.",
-"The brown fox runs fast.",
-"The big pig sits in the mud.",
-"The red hen lays an egg.",
-"The blue bike runs fast.",
-"The cute dog plays in the park.",
-"The milk is in the cup."
-];
-const finalData=[
-"The dog sits on the bed.",
-"The cat plays in the sun.",
-"The bee flies to the rose.",
-"The hen sits in the mud.",
-"The pig runs to the farm.",
-"Six fish swim in the milk.",
-"The moon shines in the night.",
-"The cow walks out in the town.",
-"The snail waits in the rain.",
-"The fox runs fast in the park.",
-"The brown dog plays with the ball.",
-"The red hen lays a big egg.",
-"The blue bike is in the yard.",
-"The cute cat drinks the milk.",
-"I can read! I am a Superstar!"
-];
-function card(list){return list.map(w=>`<div class="word"><span>${w[1]||'⭐'}</span><b>${w[0]||w}</b><br><button class="btn btn2" onclick="speak('${w[0]||w}')">🔊 اسمع</button></div>`).join('')}
-function simple(list){return list.map(w=>`<div class="word"><b>${w}</b><br><button class="btn btn2" onclick="speak('${w}')">🔊</button></div>`).join('')}
-document.getElementById('ooLong').innerHTML=simple(ooLong);
-document.getElementById('ooShort').innerHTML=simple(ooShort);
-document.getElementById('aiWords').innerHTML=simple(aiW);
-document.getElementById('ayWords').innerHTML=simple(ayW);
-document.getElementById('allWords').innerHTML=`<h3>كل الكلمات</h3><div class="grid">${card(allWordsData)}</div>`;
-document.getElementById('sentences').innerHTML=sentencesData.map(s=>`<div class="sent">${s} <button class="btn btn2" onclick="speak('${s}')">🔊</button></div>`).join('');
-document.getElementById('finalSentences').innerHTML=finalData.map((s,i)=>`<div class="sent"><b>${i+1}.</b> ${s} <button class="btn btn2" onclick="speak('${s}')">🔊</button></div>`).join('');
-let fi=0, stars=0;
-function nextFlash(){fi=(fi+1)%finalData.length; document.getElementById('flash').textContent=finalData[fi]; speak(finalData[fi]);}
-function addStar(){stars++; document.getElementById('stars').textContent='⭐ النجوم: '+stars; if(stars>=5) document.getElementById('superstar').innerHTML='🏆 مين هيبقى الـ Superstar؟ <b>أنت!</b> 🎉';}
-function speak(t){try{let u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=0.85; speechSynthesis.speak(u);}catch(e){}}
-</script>
-</body>
-</html>
+<div class="card"><h2>🏆 Station 4: Big Challenge - Final</h2>
+<p>15 sentences - Read alone, superstar
