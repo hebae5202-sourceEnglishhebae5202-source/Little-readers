@@ -45,6 +45,7 @@ button:active{transform:translateY(4px);box-shadow:none}
 <div class="card green"><h2>🎮 Play with Milo!</h2><div class="tabs" id="tabs"></div><div id="stage"></div><div class="enc" id="enc">Milo says: You can do it! 💪</div><button class="prev" onclick="prev()">⬅ Back</button><button class="listen" onclick="speakCurrent()">🔊 Listen</button><button class="next" onclick="next()">Next ➡</button><br><button class="nav" onclick="earnStar()">⭐ I Said It! Give Me a Star!</button></div>
 <div class="card purple"><h2>👁️ Sight Words - Magic Words!</h2><div class="big">🪄 ✨</div><p style="font-size:21px"><b>Magic Words! We cannot sound them out!</b><br>We just <b>MEMORIZE</b> them!<br>Milo says: Just remember me!</p><div class="grid" id="sight"></div></div>
 <div class="card orange"><h2>🤝 Digraphs - Best Friends!</h2><div class="big">👯‍♀️ 💕</div><p style="font-size:21px"><b>Two letters, ONE sound!</b><br>They are best friends forever!</p><div class="grid" id="dig"></div></div>
+<div class="card blue"><h2>🌊 Diphthongs - Sliding Sounds!</h2><div class="big">🏄‍♀️ 🌊</div><p style="font-size:21px"><b>Two vowels slide together!</b><br>Your mouth moves! Wheee!</p><div class="grid" id="diph"></div></div>
 <div class="card pink"><h2>🏆 You Are a Super Reader!</h2><div class="big">🏆 🌟 🎉</div><p style="font-size:22px">Great Job! ⭐<br>You are a Super Star! 🌟<br>Awesome! Keep Going! 🎉<br>Milo is SO proud of you! 🦖❤️</p><button class="nav" onclick="celebrate()">🎊 CELEBRATE!</button></div>
 <script>
 let stars=0;
@@ -73,13 +74,10 @@ function earnStar(){stars++;document.getElementById('starCount').textContent=sta
 render();
 const sights=[["the","🐻","The cat is here."],["said","💬","She said hello."],["you","😊","You are my friend."],["was","⭐","I was happy."],["are","🌈","You are great."],["have","🎁","I have a ball."],["come","🏃","Come here, please."],["some","🍎","I want some apples."]];
 document.getElementById('sight').innerHTML=sights.map(s=>`<div class="item"><div style="font-size:40px">${s[1]}</div><b>${s[0]}</b><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[2]}')">🔊</button></div>`).join('');
-const digs=[["ch","🪑 chair","The chair is big."],["sh","🚢 ship","The ship is in the sea."],["th","🦷 teeth","Brush your teeth."],["wh","🐳 whale","The whale is big."],["ph","📞 phone","Ring the phone."],["ck","🦆 duck","The duck is in the pond."],["ng","👑 king","The king is happy."],["oo","🌕 moon","The moon is bright."]];
-let pron = {"ch":"chuh", "sh":"shush", "th":"thhh", "wh":"wuh", "ph":"fff", "ck":"kuh", "ng":"nggg", "oo":"ooh"};
-document.getElementById('dig').innerHTML=digs.map(s=>{
-  let word = s[1].replace(/[^A-Za-z ]/g,'').trim();
-  let sound = pron[s[0].toLowerCase()] || s[0];
-  return `<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${sound}. ${word}. ${s[2]}')">🔊</button></div>`
-}).join('');
+const digs=[["ch","🪑 chair","The chair is big.","chhh"],["sh","🚢 ship","The ship is in the sea.","shhh"],["th","🦷 teeth","Brush your teeth.","thhh"],["wh","🐳 whale","The whale is big.","wuh"],["ph","📞 phone","Ring the phone.","ffff"],["ck","🦆 duck","The duck is in the pond.","kkk"],["ng","👑 king","The king is happy.","nggg"]];
+document.getElementById('dig').innerHTML=digs.map(s=>`<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[3]}. ${s[1].replace(/[^A-Za-z ]/g,'').trim()}. ${s[2]}')">🔊</button></div>`).join('');
+const diphs=[["oo","🌕 moon","The moon is bright.","oooo"],["oi","🪙 coin","I have a coin.","oyyy"],["oy","🧒 boy","The boy is happy.","oyyy"],["ou","☁️ cloud","Look at the cloud.","owww"],["ow","🐄 cow","The cow says moo.","owww"],["au","🥫 sauce","I like sauce.","awww"],["aw","🐾 paw","The cat has a paw.","awww"],["ea","🍞 bread","I eat bread.","ehhh"]];
+document.getElementById('diph').innerHTML=diphs.map(s=>`<div class="item"><b>${s[0]}</b><br><span>${s[1]}</span><br><span class="small">${s[2]}</span><br><button class="listen" onclick="speak('${s[3]}. ${s[1].replace(/[^A-Za-z ]/g,'').trim()}. ${s[2]}')">🔊</button></div>`).join('');
 </script>
 </body>
 </html>
