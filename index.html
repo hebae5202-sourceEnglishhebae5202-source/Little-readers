@@ -2,47 +2,11 @@
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Phonics Fun - Little Readers</title>
-<style>body{font-family:Arial;background:#FFF7ED;margin:0;padding:12px;text-align:center}h1{color:#7C3AED;font-size:30px}h2{color:#DB2777}.card{background:#fff;border-radius:16px;padding:14px;margin:10px auto;max-width:560px;box-shadow:0 4px 12px #0001}button{background:#7C3AED;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-size:16px;margin:4px;cursor:pointer}button.g{background:#16A34A}button.o{background:#EA580C}.word{display:inline-block;background:#F3E8FF;padding:8px 12px;border-radius:12px;margin:4px;font-size:18px}.emoji{font-size:28px}</style>
+<style>body{font-family:Arial;background:#FFF7ED;margin:0;padding:12px;text-align:center}h1{color:#7C3AED}h2{color:#DB2777}.card{background:#fff;border-radius:16px;padding:14px;margin:10px auto;max-width:560px;box-shadow:0 4px 12px #0001}button{background:#7C3AED;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-size:16px;margin:4px}button.g{background:#16A34A}button.o{background:#EA580C}.word{display:inline-block;background:#F3E8FF;padding:8px 12px;border-radius:12px;margin:4px;font-size:18px}</style>
 </head><body>
 <h1>Phonics Fun</h1>
 <p>Listen - Read - Practice - Earn Stars</p>
 <div style="font-size:20px;color:#16A34A;font-weight:bold">Your Stars: <span id="stars">0</span></div>
 <div id="app"></div>
 <div class="card"><h2>Practice Game</h2><p id="qText">Click Start Practice</p><div id="qBtns"></div><button class="o" onclick="startQuiz()">Start Practice</button><p id="qResult"></p></div>
-<div class="card"><h2>Flashcards</h2><p style="font-size:40px" id="flash">Cat</p><p style="font-size:28px" id="flashWord">cat</p><button onclick="nextFlash()">New Card</button><button class="g" onclick="addStar()">I Know It + Star</button></div>
-<script>
-let stars=0;
-function speak(t){let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;speechSynthesis.speak(u)}
-function addStar(){stars++;document.getElementById('stars').innerText=stars;alert('Great Job!')}
-let D=[
-["Short a|cat,hat,bat,map,jam,dad,bag,ant,sad,nap|The cat is sad.|Dad has a hat."],
-["Short e|bed,pen,hen,egg,red,ten,net,leg,wet,pet|My pet is wet.|Ten eggs in the net."],
-["Short i|pig,pin,fish,milk,six,kid,lip,big,sit,win|The pig is big.|Six fish in the milk."],
-["Short o|dog,box,pot,top,mom,hot,log,frog,mop,fox|The dog is hot.|Mom has a box."],
-["Short u|sun,bus,cup,bun,duck,run,nut,hug,mud,pup|The duck can run.|The sun is up."],
-["Long a|cake,name,lake,game,plane,snake,grape,wave,tape,make|I can make a cake.|The plane is at the lake."],
-["Long e|bee,tree,feet,green,queen,sleep,sweet,cheese,sheep,three|The bee is on the tree.|Three sheep are green."],
-["Long i|bike,five,kite,lion,rice,time,smile,dive,nine,mine|I can ride my bike.|The lion is five."],
-["Long o|nose,rose,home,bone,rope,boat,goat,stone,phone,joke|My nose is at home.|The goat is on the boat."],
-["Long u|cube,mule,flute,cute,tune,huge,tube,use,unicorn,music|The unicorn is cute.|I use my flute."],
-["ch|chair,cheese,chicken,chin,lunch,beach,peach,watch,chip,church|I eat lunch at the beach.|Watch the chicken."],
-["sh|ship,fish,shop,shoe,sheep,wash,brush,shell,shark,shirt|The ship is in the shop.|Wash your shoe."],
-["th|this,that,three,thumb,mouth,teeth,bath,with,thin,they|This is my thumb.|They are in the bath."],
-["wh|whale,wheel,white,when,what,where,why,which,whisper,wheat|The whale is white.|Where is the wheel?"],
-["ph|phone,photo,elephant,graph,dolphin,alphabet,trophy,nephew,phantom,phase|The elephant has a phone.|Take a photo of the dolphin."],
-["ck|duck,rock,sock,clock,truck,black,snack,neck,pack,chick|The duck is on the rock.|Pack a snack in the truck."],
-["ng|king,ring,wing,sing,long,song,swing,spring,strong,thing|The king can sing.|Swing and sing a song."],
-["oo|moon,spoon,boot,zoo,food,cool,school,room,tooth,balloon|The moon is cool.|My food is in my room."],
-["oi oy|coin,oil,point,join,voice,noise,boil,boy,toy,joy|The boy has a toy.|Join and use your voice."],
-["ou ow|cloud,mouse,house,mouth,loud,round,shout,cow,now,how|The cow is in the house.|Shout now."],
-["au aw|sauce,author,pause,cause,paw,saw,draw,straw,yawn,August|Draw a paw with a straw.|Pause and yawn."],
-["ea|bread,head,read,sea,beach,dream,teacher,clean,eat,please|Please read and eat bread.|The teacher is at the sea."]];
-let E={cat:"Cat",hat:"Hat",bat:"Bat",map:"Map",jam:"Jam",dad:"Dad",bag:"Bag",ant:"Ant",sad:"Sad",nap:"Nap",bed:"Bed",pen:"Pen",hen:"Hen",egg:"Egg",red:"Red",ten:"Ten",net:"Net",leg:"Leg",wet:"Wet",pet:"Pet",pig:"Pig",pin:"Pin",fish:"Fish",milk:"Milk",six:"Six",kid:"Kid",lip:"Lip",big:"Big",sit:"Sit",win:"Win",dog:"Dog",box:"Box",pot:"Pot",top:"Top",mom:"Mom",hot:"Hot",log:"Log",frog:"Frog",mop:"Mop",fox:"Fox",sun:"Sun",bus:"Bus",cup:"Cup",bun:"Bun",duck:"Duck",run:"Run",nut:"Nut",hug:"Hug",mud:"Mud",pup:"Pup",cake:"Cake",name:"Name",lake:"Lake",game:"Game",plane:"Plane",snake:"Snake",grape:"Grape",wave:"Wave",tape:"Tape",make:"Make",bee:"Bee",tree:"Tree",feet:"Feet",green:"Green",queen:"Queen",sleep:"Sleep",sweet:"Sweet",cheese:"Cheese",sheep:"Sheep",three:"Three",bike:"Bike",five:"Five",kite:"Kite",lion:"Lion",rice:"Rice",time:"Time",smile:"Smile",dive:"Dive",nine:"Nine",mine:"Mine",nose:"Nose",rose:"Rose",home:"Home",bone:"Bone",rope:"Rope",boat:"Boat",goat:"Goat",stone:"Stone",phone:"Phone",joke:"Joke",cube:"Cube",mule:"Mule",flute:"Flute",cute:"Cute",tune:"Tune",huge:"Huge",tube:"Tube",use:"Use",unicorn:"Unicorn",music:"Music",chair:"Chair",chicken:"Chicken",chin:"Chin",lunch:"Lunch",beach:"Beach",peach:"Peach",watch:"Watch",chip:"Chip",church:"Church",ship:"Ship",shop:"Shop",shoe:"Shoe",wash:"Wash",brush:"Brush",shell:"Shell",shark:"Shark",shirt:"Shirt",this:"This",that:"That",thumb:"Thumb",mouth:"Mouth",teeth:"Teeth",bath:"Bath",with:"With",thin:"Thin",they:"They",whale:"Whale",wheel:"Wheel",white:"White",when:"When",what:"What",where:"Where",why:"Why",which:"Which",whisper:"Whisper",wheat:"Wheat",photo:"Photo",elephant:"Elephant",graph:"Graph",dolphin:"Dolphin",alphabet:"Alphabet",trophy:"Trophy",nephew:"Nephew",phantom:"Phantom",phase:"Phase",rock:"Rock",sock:"Sock",clock:"Clock",truck:"Truck",black:"Black",snack:"Snack",neck:"Neck",pack:"Pack",chick:"Chick",king:"King",ring:"Ring",wing:"Wing",sing:"Sing",long:"Long",song:"Song",swing:"Swing",spring:"Spring",strong:"Strong",thing:"Thing",moon:"Moon",spoon:"Spoon",boot:"Boot",zoo:"Zoo",food:"Food",cool:"Cool",school:"School",room:"Room",tooth:"Tooth",balloon:"Balloon",coin:"Coin",oil:"Oil",point:"Point",join:"Join",voice:"Voice",noise:"Noise",boil:"Boil",boy:"Boy",toy:"Toy",joy:"Joy",cloud:"Cloud",mouse:"Mouse",house:"House",loud:"Loud",round:"Round",shout:"Shout",cow:"Cow",now:"Now",how:"How",sauce:"Sauce",author:"Author",pause:"Pause",cause:"Cause",paw:"Paw",saw:"Saw",draw:"Draw",straw:"Straw",yawn:"Yawn",August:"August",bread:"Bread",head:"Head",read:"Read",sea:"Sea",dream:"Dream",teacher:"Teacher",clean:"Clean",eat:"Eat",please:"Please"};
-let all=[],h="";
-D.forEach(function(d){let p=d[0].split("|");h+='<div class="card"><h2>'+p[0]+'</h2>';p[1].split(",").forEach(function(w){all.push(w);h+='<div class="word"><span class="emoji">'+E[w]+'</span><br>'+w+'<br><button onclick="speak(\''+w+'\')">Listen</button></div>';});h+='<p><b>Sentences:</b></p><p>'+p[2]+' <button onclick="speak(\''+p[2]+'\')">Listen</button></p><p>'+p[3]+' <button onclick="speak(\''+p[3]+'\')">Listen</button></p></div>';});
-document.getElementById('app').innerHTML=h;
-let cur=null;
-function startQuiz(){cur=all[Math.floor(Math.random()*all.length)];let opts=[cur];while(opts.length<3){let r=all[Math.floor(Math.random()*all.length)];if(opts.indexOf(r)<0)opts.push(r)}opts.sort(function(){return Math.random()-.5});document.getElementById('qText').innerText="Listen and Choose";speak(cur);document.getElementById('qBtns').innerHTML=opts.map(function(o){return '<button onclick="checkQuiz(\''+o+'\')">'+E[o]+' '+o+'</button>'}).join("");}
-function checkQuiz(a){if(a===cur){addStar();document.getElementById('qResult').innerText="Correct! Great Job!"}else document.getElementById('qResult').innerText="Try Again!"}
-let fi=0;function nextFlash(){fi=(fi+1)%all.length;document.getElementById('flash').innerText=E[all[fi]];document.getElementById('flashWord').innerText=all[fi];speak(all[fi])}
-</script></body></html>
+<div class="card"><h2>Flashcards</h2><p style="font-size:40px" id="flash">Cat</p><p style="font-size:28px" id="flashWord">cat</p><button onclick="nextFlash()">New Card</button><button class="g" onclick="addStar()">I Know
