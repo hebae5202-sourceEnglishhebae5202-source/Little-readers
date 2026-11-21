@@ -2,35 +2,36 @@
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Phonics Fun - Little Readers</title>
-<style>body{font-family:Arial;background:#FFF7ED;margin:0;padding:12px;text-align:center}h1{color:#7C3AED}h2{color:#DB2777}.card{background:#fff;border-radius:16px;padding:14px;margin:10px auto;max-width:560px;box-shadow:0 4px 12px #0001}button{background:#7C3AED;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-size:16px;margin:4px}button.g{background:#16A34A}button.o{background:#EA580C}.word{display:inline-block;background:#F3E8FF;padding:8px 12px;border-radius:12px;margin:4px;font-size:18px}</style>
+<style>body{font-family:Arial;background:#FFF7ED;margin:0;padding:12px;text-align:center}h1{color:#7C3AED}h2{color:#DB2777}.card{background:#fff;border-radius:16px;padding:14px;margin:10px auto;max-width:560px;box-shadow:0 4px 12px #0001}button{background:#7C3AED;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-size:16px;margin:4px}button.g{background:#16A34A}button.o{background:#EA580C}.word{display:inline-block;background:#F3E8FF;padding:8px 12px;border-radius:12px;margin:4px;font-size:18px}.vowel{display:inline-block;background:#FDE68A;padding:10px 14px;border-radius:50%;margin:4px;font-size:24px;font-weight:bold}</style>
 </head><body>
 <h1>Phonics Fun</h1>
 <p>Listen - Read - Practice - Earn Stars</p>
 <div style="font-size:20px;color:#16A34A;font-weight:bold">Your Stars: <span id="stars">0</span></div>
+<div class="card"><h2>What are Vowels?</h2><p>Vowels are 5 letters. Every word has a vowel!</p><div><span class="vowel">A</span><span class="vowel">E</span><span class="vowel">I</span><span class="vowel">O</span><span class="vowel">U</span></div><p><b>Short Vowel:</b> Small sound. Like <b>a</b> in <b>cat</b> - /a/</p><p><b>Long Vowel:</b> Says its name. Like <b>a</b> in <b>cake</b> - /ay/</p><p>Click <b>Listen</b> on every word to hear it!</p><button onclick="speak('A E I O U are vowels')">Listen Vowels</button></div>
 <div id="app"></div>
-<div class="card"><h2>Practice Game</h2><p id="qText">Click Start Practice</p><div id="qBtns"></div><button class="o" onclick="startQuiz()">Start Practice</button><p id="qResult"></p></div>
+<div class="card"><h2>Practice Game</h2><p id="qText">Click Start Practice to play!</p><div id="qBtns"></div><button class="o" onclick="startQuiz()">Start Practice</button><button onclick="hearAgain()">Hear Again</button><p id="qResult"></p></div>
 <div class="card"><h2>Flashcards</h2><p style="font-size:40px" id="flash">Cat</p><p style="font-size:28px" id="flashWord">cat</p><button onclick="nextFlash()">New Card</button><button class="g" onclick="addStar()">I Know It + Star</button></div>
 <script>
-let stars=0;
-function speak(t){let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;speechSynthesis.speak(u)}
-function addStar(){stars++;document.getElementById('stars').innerText=stars;alert('Great Job!')}
+let stars=0,cur="";
+function speak(t){try{speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;speechSynthesis.speak(u)}catch(e){}}
+function addStar(){stars++;document.getElementById('stars').innerText=stars;alert('Great Job! You got a star!')}
+function hearAgain(){if(cur) speak(cur)}
 let D=[
-["Short a|cat,hat,bat,map,jam,dad,bag,ant,sad,nap|The cat is sad.|Dad has a hat."],
-["Short e|bed,pen,hen,egg,red,ten,net,leg,wet,pet|My pet is wet.|Ten eggs in the net."],
-["Short i|pig,pin,fish,milk,six,kid,lip,big,sit,win|The pig is big.|Six fish in the milk."],
-["Short o|dog,box,pot,top,mom,hot,log,frog,mop,fox|The dog is hot.|Mom has a box."],
-["Short u|sun,bus,cup,bun,duck,run,nut,hug,mud,pup|The duck can run.|The sun is up."],
-["Long a|cake,name,lake,game,plane,snake,grape,wave,tape,make|I can make a cake.|The plane is at the lake."],
-["Long e|bee,tree,feet,green,queen,sleep,sweet,cheese,sheep,three|The bee is on the tree.|Three sheep are green."],
-["Long i|bike,five,kite,lion,rice,time,smile,dive,nine,mine|I can ride my bike.|The lion is five."],
-["Long o|nose,rose,home,bone,rope,boat,goat,stone,phone,joke|My nose is at home.|The goat is on the boat."],
-["Long u|cube,mule,flute,cute,tune,huge,tube,use,unicorn,music|The unicorn is cute.|I use my flute."]];
+["Short a|cat,hat,bat,map,jam,dad,bag,ant,sad,nap|The cat is sad.|Dad has a hat.|I nap on the mat."],
+["Short e|bed,pen,hen,egg,red,ten,net,leg,wet,pet|My pet is wet.|Ten eggs in the net.|The hen is on the bed."],
+["Short i|pig,pin,fish,milk,six,kid,lip,big,sit,win|The pig is big.|Six fish in the milk.|I can sit and win."],
+["Short o|dog,box,pot,top,mom,hot,log,frog,mop,fox|The dog is hot.|Mom has a box.|The frog is on the log."],
+["Short u|sun,bus,cup,bun,duck,run,nut,hug,mud,pup|The duck can run.|The sun is up.|I hug my pup in the mud."],
+["Long a|cake,name,lake,game,plane,snake,grape,wave,tape,make|I can make a cake.|The plane is at the lake.|I like to play a game."],
+["Long e|bee,tree,feet,green,queen,sleep,sweet,cheese,sheep,three|The bee is on the tree.|Three sheep are green.|The queen likes sweet cheese."],
+["Long i|bike,five,kite,lion,rice,time,smile,dive,nine,mine|I can ride my bike.|The lion is five.|It is time to smile."],
+["Long o|nose,rose,home,bone,rope,boat,goat,stone,phone,joke|My nose is at home.|The goat is on the boat.|I like to tell a joke."],
+["Long u|cube,mule,flute,cute,tune,huge,tube,use,unicorn,music|The unicorn is cute.|I use my flute.|I love to play music."]];
 let E={cat:"Cat",hat:"Hat",bat:"Bat",map:"Map",jam:"Jam",dad:"Dad",bag:"Bag",ant:"Ant",sad:"Sad",nap:"Nap",bed:"Bed",pen:"Pen",hen:"Hen",egg:"Egg",red:"Red",ten:"Ten",net:"Net",leg:"Leg",wet:"Wet",pet:"Pet",pig:"Pig",pin:"Pin",fish:"Fish",milk:"Milk",six:"Six",kid:"Kid",lip:"Lip",big:"Big",sit:"Sit",win:"Win",dog:"Dog",box:"Box",pot:"Pot",top:"Top",mom:"Mom",hot:"Hot",log:"Log",frog:"Frog",mop:"Mop",fox:"Fox",sun:"Sun",bus:"Bus",cup:"Cup",bun:"Bun",duck:"Duck",run:"Run",nut:"Nut",hug:"Hug",mud:"Mud",pup:"Pup",cake:"Cake",name:"Name",lake:"Lake",game:"Game",plane:"Plane",snake:"Snake",grape:"Grape",wave:"Wave",tape:"Tape",make:"Make",bee:"Bee",tree:"Tree",feet:"Feet",green:"Green",queen:"Queen",sleep:"Sleep",sweet:"Sweet",cheese:"Cheese",sheep:"Sheep",three:"Three",bike:"Bike",five:"Five",kite:"Kite",lion:"Lion",rice:"Rice",time:"Time",smile:"Smile",dive:"Dive",nine:"Nine",mine:"Mine",nose:"Nose",rose:"Rose",home:"Home",bone:"Bone",rope:"Rope",boat:"Boat",goat:"Goat",stone:"Stone",phone:"Phone",joke:"Joke",cube:"Cube",mule:"Mule",flute:"Flute",cute:"Cute",tune:"Tune",huge:"Huge",tube:"Tube",use:"Use",unicorn:"Unicorn",music:"Music"};
 let all=[],h="";
-D.forEach(function(d){let p=d[0].split("|");h+='<div class="card"><h2>'+p[0]+'</h2>';p[1].split(",").forEach(function(w){all.push(w);h+='<div class="word">'+E[w]+'<br>'+w+'<br><button onclick="speak(\''+w+'\')">Listen</button></div>';});h+='<p><b>Sentences:</b></p><p>'+p[2]+' <button onclick="speak(\''+p[2]+'\')">Listen</button></p><p>'+p[3]+' <button onclick="speak(\''+p[3]+'\')">Listen</button></p></div>';});
+D.forEach(function(d){let p=d[0].split("|");h+='<div class="card"><h2>'+p[0]+'</h2>';p[1].split(",").forEach(function(w){all.push(w);h+='<div class="word">'+E[w]+'<br>'+w+'<br><button onclick="speak(\''+w+'\')">Listen</button></div>';});h+='<p><b>Sentences - Read and Listen:</b></p>';for(let i=2;i<p.length;i++){h+='<p>'+p[i]+' <button onclick="speak(\''+p[i]+'\')">Listen</button></p>';}h+='</div>';});
 document.getElementById('app').innerHTML=h;
-let cur=null;
-function startQuiz(){cur=all[Math.floor(Math.random()*all.length)];let opts=[cur];while(opts.length<3){let r=all[Math.floor(Math.random()*all.length)];if(opts.indexOf(r)<0)opts.push(r)}opts.sort(function(){return Math.random()-.5});document.getElementById('qText').innerText="Listen and Choose";speak(cur);document.getElementById('qBtns').innerHTML=opts.map(function(o){return '<button onclick="checkQuiz(\''+o+'\')">'+E[o]+' '+o+'</button>'}).join("");}
-function checkQuiz(a){if(a===cur){addStar();document.getElementById('qResult').innerText="Correct! Great Job!"}else document.getElementById('qResult').innerText="Try Again!"}
+function startQuiz(){cur=all[Math.floor(Math.random()*all.length)];let opts=[cur];while(opts.length<3){let r=all[Math.floor(Math.random()*all.length)];if(opts.indexOf(r)<0)opts.push(r)}opts.sort(function(){return Math.random()-.5});document.getElementById('qText').innerText="Listen and choose the word you hear!";document.getElementById('qResult').innerText="";speak(cur);document.getElementById('qBtns').innerHTML=opts.map(function(o){return '<button onclick="checkQuiz(\''+o+'\')">'+E[o]+' - '+o+'</button>'}).join("<br>");}
+function checkQuiz(a){if(a===cur){addStar();document.getElementById('qResult').innerText="Correct! Great Job! Click Start again!"}else{document.getElementById('qResult').innerText="Try Again! Listen again!";speak(cur)}}
 let fi=0;function nextFlash(){fi=(fi+1)%all.length;document.getElementById('flash').innerText=E[all[fi]];document.getElementById('flashWord').innerText=all[fi];speak(all[fi])}
 </script></body></html>
