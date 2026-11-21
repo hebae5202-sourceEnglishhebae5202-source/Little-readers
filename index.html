@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dino - Learn Phonics</title>
-<style>body{font-family:Arial;background:#FFF7ED;margin:0;padding:10px;text-align:center}h1{color:#7C3AED;font-size:32px}h2{color:#DB2777}.card{background:#fff;border-radius:24px;padding:14px;margin:14px auto;max-width:580px;box-shadow:0 6px 18px #0003;border:3px solid #FDE68A}button{background:#7C3AED;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-size:18px;margin:4px}button.g{background:#16A34A}.word{display:inline-block;background:#F3E8FF;padding:8px 10px;border-radius:14px;margin:4px;font-size:16px}</style>
+<title>Dino Friend - Learn Phonics</title>
+<style>
+body{font-family:Arial;background:#FFF7ED;margin:0;padding:10px;text-align:center}
+h1{color:#7C3AED;font-size:36px;margin:5px}
+.card{background:#fff;border-radius:24px;padding:16px;margin:16px auto;max-width:620px;box-shadow:0 6px 18px rgba(0,0,0,.15);border:3px solid #FDE68A}
+button{background:#7C3AED;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-size:18px;margin:4px;cursor:pointer}
+button.g{background:#16A34A}
+button.y{background:#F59E0B}
+.word{display:inline-block;background:#F3E8FF;padding:10px;border-radius:14px;margin:4px;font-size:16px;min-width:100px}
+.dino{display:inline-block;animation:walk 3s infinite alternate;font-size:100px}
+@keyframes walk{from{transform:translateX(-30px) rotate(-5deg)}to{transform:translateX(30px) rotate(5deg)}}
+.vowel{display:inline-block;width:70px;height:70px;line-height:70px;border-radius:50%;color:#fff;font-size:34px;font-weight:bold;margin:4px;animation:b 1.2s infinite alternate}
+@keyframes b{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.a{background:#EF4444}.e{background:#F97316}.i{background:#EAB308}.o{background:#22C55E}.u{background:#3B82F6}
+</style>
 </head><body>
-<div style="font-size:110px">🦖</div>
-<h1>Phonics with Dino</h1>
-<p><b>Hello! I am Dino! Let's play and learn! 🎉</b></p>
+<div class="dino">🦖</div>
+<h1>Dino Friend</h1>
 <p>⭐ Your Stars: <span id="stars">0</span> ⭐</p>
-<button class="g" onclick="speak('Hello! I am Dino!')">🦖 Dino Says Hello - Click Here!</button>
-<div class="card"><h2>🎈 Vowels 🎈</h2>
-<p><b>A E I O U</b></p>
-<p>👆 Click any letter to hear it!</p>
-<button onclick="speakSlow('A')">🔊 A - Apple</button>
-<button onclick="speakSlow('E')">🔊 E - Egg</button>
-<button onclick="speakSlow('I')">🔊 I - Igloo</button>
-<button onclick="speakSlow('O')">🔊 O - Orange</button>
-<button onclick="speakSlow('U')">🔊 U - Umbrella</button></div>
+<button class="g" onclick="speak('Hello! I am Dino!')">🦖 Dino Says Hello - Click Me!</button>
+<div class="card"><h2>🎉 I am a Superstar! 🎉</h2>
+<p><b>Tap any letter - Dino will say it!</b></p>
+<p>🐶 🐱 🐰 🦁 🐵</p>
+<div><span class="vowel a" onclick="speak('A')">A</span><span class="vowel e" onclick="speak('E')">E</span><span class="vowel i" onclick="speak('I')">I</span><span class="vowel o" onclick="speak('O')">O</span><span class="vowel u" onclick="speak('U')">U</span></div>
+<p><b>⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</b></p></div>
+<div class="card"><h2>💖 What are Vowels? 💖</h2>
+<p>🎈 Vowels are very special letters - they make a sound every time.</p>
+<p>😺 A, E, I, O, U are the vowels! 😺</p>
+<p>📖 <b>Short:</b> A says /a/ - Apple 🍎</p>
+<p>📖 <b>Long:</b> A says /ay/ - Cake 🍰</p>
+<p>📖 <b>Diphthong:</b> Two vowels together - Rain, Moon 🌧️🌙</p></div>
 <div id="app"></div>
 <div class="card"><h2>🎮 Dino Game 🎮</h2>
-<p id="qText">👇 Click Start to play!</p>
+<p id="qText">Click Start to play!</p>
 <div id="qBtns"></div>
 <button onclick="startQuiz()">▶️ Start Game</button><br>
 <button onclick="hearAgain()">🔊 Hear Again</button>
@@ -33,12 +48,23 @@
 let stars=0,cur="";
 function clean(t){return t.replace(/[^a-zA-Z0-9 .,!?']/g,' ')}
 function speak(t){try{speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(clean(t));u.lang='en-US';u.rate=.8;speechSynthesis.speak(u)}catch(e){}}
-function speakSlow(t){try{speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(clean(t));u.lang='en-US';u.rate=0.45;speechSynthesis.speak(u)}catch(e){}}
 function addStar(){stars++;document.getElementById('stars').innerText=stars;alert('Great! Dino is happy! You got a star!')}
 function hearAgain(){if(cur){speak(cur)}}
 let D=[
-["Short a 🍎 🐱|cat,hat,bat,map,jam|The cat is sad. 🐱|Dad has a hat. 👨"],
-["Short e 🥚 🐔|bed,pen,hen,egg,red|My pet is wet. 🐶|Ten eggs in the net. 🥚"],
-["Short i 🧊 🐷|pig,pin,fish,milk,six|The pig is big. 🐷|Six fish in the milk. 🐟"],
-["Short o 🍊 🐶|dog,box,pot,top,mom|The dog is hot. 🐶|Mom has a box. 📦"],
-["Short u ☂️ 🌞|sun,bus,cup,bun,duck|The duck can run. 
+["Short a - /a/ like Apple 🍎|cat,hat,bat,map,jam,cap,pan,fan,nap,van|The cat is sad.|Dad has a hat.|The bat is on the map.|I like jam.|The cap is on the pan."],
+["Short e - /e/ like Egg 🥚|bed,pen,hen,egg,red,net,pet,wet,ten,leg|My pet is wet.|Ten eggs in the net.|The hen is red.|I have a pen.|My leg is on the bed."],
+["Short i - /i/ like Igloo 🧊|pig,pin,fish,milk,six,king,ring,ship,hit,zip|The pig is big.|Six fish in the milk.|The king has a ring.|The ship is big.|I can zip my bag."],
+["Short o - /o/ like Orange 🍊|dog,box,pot,top,mom,hot,log,fox,pop,sock|The dog is hot.|Mom has a box.|The fox is on the log.|The pot is hot.|Pop is on top."],
+["Short u - /u/ like Umbrella ☂️|sun,bus,cup,bun,duck,run,fun,cut,bug,up|The duck can run.|The sun is up.|The bus is fun.|I cut the bun.|The bug is in the cup."],
+["Long a - /ay/ like Cake 🍰|cake,name,lake,game,plane,make,take,tape,grape,brave|I can make a cake.|The plane is at the lake.|This is a fun game.|My name is on the tape.|The grape is brave."],
+["ai - ay like Rain 🌧️|rain,train,play,day,mail,wait,paint,sail,main,chain|I play in the rain.|The train is here today.|I wait for the mail.|I paint in the day.|We sail on the main sea."],
+["oo like Moon 🌙|moon,spoon,book,foot,cool,soon,food,pool,room,zoo|The moon is cool.|I read a good book.|My foot is in the pool.|The food is in the room.|We go to the zoo soon."]
+];
+let E={cat:"Cat 🐱",hat:"Hat 🎩",bat:"Bat 🦇",map:"Map 🗺️",jam:"Jam 🍓",cap:"Cap 🧢",pan:"Pan 🍳",fan:"Fan 🌀",nap:"Nap 😴",van:"Van 🚐",bed:"Bed 🛏️",pen:"Pen 🖊️",hen:"Hen 🐔",egg:"Egg 🥚",red:"Red 🔴",net:"Net 🥅",pet:"Pet 🐶",wet:"Wet 💧",ten:"Ten 🔟",leg:"Leg 🦵",pig:"Pig 🐷",pin:"Pin 📌",fish:"Fish 🐟",milk:"Milk 🥛",six:"Six 6️⃣",king:"King 👑",ring:"Ring 💍",ship:"Ship 🚢",hit:"Hit 🥊",zip:"Zip 🤐",dog:"Dog 🐶",box:"Box 📦",pot:"Pot 🍲",top:"Top 🔝",mom:"Mom 👩",hot:"Hot 🔥",log:"Log 🪵",fox:"Fox 🦊",pop:"Pop 🎈",sock:"Sock 🧦",sun:"Sun ☀️",bus:"Bus 🚌",cup:"Cup ☕",bun:"Bun 🍞",duck:"Duck 🦆",run:"Run 🏃",fun:"Fun 🎉",cut:"Cut ✂️",bug:"Bug 🐛",up:"Up ⬆️",cake:"Cake 🎂",name:"Name 🏷️",lake:"Lake 🏞️",game:"Game 🎮",plane:"Plane ✈️",make:"Make 🛠️",take:"Take ✋",tape:"Tape 📼",grape:"Grape 🍇",brave:"Brave 🦁",rain:"Rain 🌧️",train:"Train 🚂",play:"Play 🎮",day:"Day ☀️",mail:"Mail 💌",wait:"Wait ⏳",paint:"Paint 🎨",sail:"Sail ⛵",main:"Main ⭐",chain:"Chain ⛓️",moon:"Moon 🌙",spoon:"Spoon 🥄",book:"Book 📚",foot:"Foot 🦶",cool:"Cool 😎",soon:"Soon ⏰",food:"Food 🍔",pool:"Pool 🏊",room:"Room 🏠",zoo:"Zoo 🦁"};
+let all=[],h="";
+D.forEach(function(d){let p=d[0].split("|");h+='<div class="card"><h2>'+p[0]+'</h2><p>Listen and repeat! 🔊</p>';p[1].split(",").forEach(function(w){all.push(w);h+='<div class="word">'+E[w]+'<br>'+w+'<br><button onclick="speak(\''+w+'\')">🔊 Listen</button></div>';});h+='<p><b>📖 5 Sentences:</b></p>';for(let i=2;i<p.length;i++){h+='<p>'+(i-1)+'. '+p[i]+' <button onclick="speak(\''+p[i]+'\')">🔊 Listen</button></p>';}h+='</div>';});
+document.getElementById('app').innerHTML=h;
+function startQuiz(){cur=all[Math.floor(Math.random()*all.length)];let opts=[cur];while(opts.length<3){let r=all[Math.floor(Math.random()*all.length)];if(opts.indexOf(r)<0)opts.push(r)}opts.sort(function(){return Math.random()-.5});document.getElementById('qText').innerText="Listen! What did Dino say?";document.getElementById('qResult').innerText="";speak(cur);document.getElementById('qBtns').innerHTML=opts.map(function(o){return '<button onclick="checkQuiz(\''+o+'\')">'+E[o]+' - '+o+'</button>'}).join("");}
+function checkQuiz(a){if(a===cur){addStar();document.getElementById('qResult').innerText="Correct! Dino is happy!";speak('Correct! Great job!')}else{document.getElementById('qResult').innerText="Try again!";speak(cur)}}
+let fi=0;function nextFlash(){fi=(fi+1)%all.length;document.getElementById('flash').innerText=E[all[fi]];document.getElementById('flashWord').innerText=all[fi];speak(all[fi])}
+</script></body></html>
