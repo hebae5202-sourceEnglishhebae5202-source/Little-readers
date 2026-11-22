@@ -1,65 +1,552 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dino Friends - Words & Sentences</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dino Friend - Phonics Adventure</title>
+
 <style>
-body{font-family:Arial;text-align:center;background:#FFF8E1;margin:0;padding:15px}
-h1{color:#E65100;font-size:32px} h2{color:#2E7D32}
-.card{background:white;border-radius:20px;padding:15px;margin:15px auto;max-width:500px;box-shadow:0 4px 10px #ccc}
-img{width:100%;border-radius:15px}
-.word{font-size:28px;font-weight:bold;color:#D84315}
-.mean{font-size:18px;color:#555}
-.sent{font-size:20px;background:#E8F5E9;padding:10px;border-radius:10px;margin-top:10px}
-button{background:#FF6D00;color:white;border:none;padding:12px 20px;border-radius:20px;font-size:18px;margin:5px;cursor:pointer}
-button:hover{background:#E65100}
+body {
+font-family: Arial;
+background: #FFF7ED;
+margin: 0;
+padding: 10px;
+text-align: center;
+color: #30234A;
+}
+h1 {color:#7C3AED;font-size:36px}
+.card {
+background:white;
+border-radius:24px;
+padding:16px;
+margin:16px auto;
+max-width:800px;
+box-shadow:0 6px 18px #0002;
+border:3px solid #FDE68A;
+}
+button {
+background:#7C3AED;
+color:white;
+border:0;
+padding:10px 16px;
+border-radius:20px;
+font-size:17px;
+margin:5px;
+cursor:pointer;
+}
+button.green {background:#16A34A}
+button.gold {background:#F59E0B}
+.dino {
+font-size:90px;
+animation:walk 2s infinite alternate;
+}
+@keyframes walk {
+from {transform:translateX(-15px)}
+to {transform:translateX(15px)}
+}
+.word {
+display:inline-block;
+background:#F3E8FF;
+padding:12px;
+border-radius:14px;
+margin:5px;
+min-width:95px;
+font-size:18px;
+}
+.sentence {
+background:#FEF3C7;
+padding:12px;
+border-radius:12px;
+margin:8px;
+}
+.vowels {
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+}
+.vowel {
+width:60px;
+height:60px;
+line-height:60px;
+border-radius:50%;
+color:white;
+font-size:30px;
+font-weight:bold;
+margin:5px;
+}
+.a{background:#EF4444}
+.e{background:#F97316}
+.i{background:#EAB308}
+.o{background:#22C55E}
+.u{background:#3B82F6}
 </style>
 </head>
+
 <body>
-<h1>🦕 Dino Friends</h1>
-<p>Learn Words & Sentences</p>
+
+<div class="dino">🦖</div>
+<h1>Dino Friend</h1>
+<h2>Phonics Reading Adventure</h2>
+
+<p>⭐ Your Stars: <span id="stars">0</span></p>
+
+<button class="green" onclick="speak('Hello! I am Dino! Let us learn phonics!')">
+🦖 Dino Says Hello!
+</button>
 
 <div class="card">
-<img src="cover.jpg" onerror="this.style.display='none'">
-<h2>📖 My Story</h2>
-<p style="font-size:20px;line-height:1.8">
-Hello! I am <b>Dino</b>.<br>
-I am happy. I have a friend.<br>
-We play. We run. We sing.<br>
-I love my friends!
-</p>
-<button onclick="speak('Hello! I am Dino. I am happy. I have a friend. We play. We run. We sing. I love my friends!')">🔊 Listen to Story</button>
+<h2>🔊 Speaking Speed</h2>
+<select id="speed" onchange="rate=Number(this.value)">
+<option value="0.55">Very Slow</option>
+<option value="0.65" selected>Slow</option>
+<option value="0.8">Normal</option>
+<option value="1">Fast</option>
+</select>
+<button onclick="speak('The cat sat on the mat.')">Test Voice</button>
 </div>
 
 <div class="card">
-<h2>📚 Words</h2>
-<div class="word">Dino 🦕</div><div class="mean">ديناصور</div>
-<button onclick="speak('Dino')">🔊 Dino</button><hr>
-<div class="word">Egg 🥚</div><div class="mean">بيضة</div>
-<button onclick="speak('Egg')">🔊 Egg</button><hr>
-<div class="word">Friend 🧒</div><div class="mean">صديق</div>
-<button onclick="speak('Friend')">🔊 Friend</button><hr>
-<div class="word">Happy 😊</div><div class="mean">سعيد</div>
-<button onclick="speak('Happy')">🔊 Happy</button><hr>
-<div class="word">Play ⚽</div><div class="mean">يلعب</div>
-<button onclick="speak('Play')">🔊 Play</button>
+<h2>🌈 Meet the Vowels</h2>
+<p>Tap a letter and listen!</p>
+<div class="vowels">
+<span class="vowel a" onclick="speak('A')">A</span>
+<span class="vowel e" onclick="speak('E')">E</span>
+<span class="vowel i" onclick="speak('I')">I</span>
+<span class="vowel o" onclick="speak('O')">O</span>
+<span class="vowel u" onclick="speak('U')">U</span>
+</div>
+</div>
+
+<div id="lessons"></div>
+
+<div class="card">
+<h2>🏆 Big Challenge</h2>
+<p id="challengeQuestion">Listen and choose!</p>
+<div id="challengeButtons"></div>
+<button onclick="startChallenge()">Start Challenge</button>
+<p id="challengeResult"></p>
 </div>
 
 <div class="card">
-<h2>💬 Sentences</h2>
-<div class="sent">I am Dino. - أنا دينو</div>
-<button onclick="speak('I am Dino')">🔊 Listen</button>
-<div class="sent">I am happy. - أنا سعيد</div>
-<button onclick="speak('I am happy')">🔊 Listen</button>
-<div class="sent">I have a friend. - عندي صديق</div>
-<button onclick="speak('I have a friend')">🔊 Listen</button>
-<div class="sent">We play together. - نلعب مع بعض</div>
-<button onclick="speak('We play together')">🔊 Listen</button>
+<h2>🎮 Dino Listening Game</h2>
+<p id="question">Press Start Game!</p>
+<div id="answers"></div>
+<button onclick="startQuiz()">Start Game</button>
+<button onclick="repeatQuiz()">🔊 Hear Again</button>
+<p id="result"></p>
+</div>
+
+<div class="card">
+<h2>🃏 Dino Flashcards</h2>
+<h1 id="flashEmoji">🐱</h1>
+<h2 id="flashWord">cat</h2>
+<button onclick="nextFlash()">New Card</button>
+<button class="green" onclick="speak(flashWord.textContent)">🔊 Listen</button>
+<button class="gold" onclick="addStar()">⭐ I Know It!</button>
 </div>
 
 <script>
-function speak(t){let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.8;speechSynthesis.speak(u)}
+
+let rate=0.65;
+let stars=0;
+let allWords=[];
+let currentWord="";
+let flashIndex=0;
+
+function speak(text){
+if(!window.speechSynthesis)return;
+speechSynthesis.cancel();
+let u=new SpeechSynthesisUtterance(text);
+u.lang="en-US";
+u.rate=rate;
+u.pitch=1;
+speechSynthesis.speak(u);
+}
+
+function addStar(){
+stars++;
+document.getElementById("stars").innerText=stars;
+}
+
+const lessons=[
+
+{
+title:"Short A - Apple 🍎",
+words:"cat hat bat map jam cap pan fan nap van",
+sentences:[
+"The cat sat on the mat.",
+"Dad has a hat.",
+"The bat is on the map.",
+"I like jam.",
+"The cap is on the pan."
+]
+},
+
+{
+title:"Short E - Egg 🥚",
+words:"bed pen hen egg red net pet wet ten leg",
+sentences:[
+"My pet is wet.",
+"Ten eggs are in the nest.",
+"The hen is red.",
+"I have a red pen.",
+"The hen is next to the bed."
+]
+},
+
+{
+title:"Short I - Igloo 🧊",
+words:"pig pin fish milk six king ring ship hit zip",
+sentences:[
+"The pig is big.",
+"Six fish swim in the pond.",
+"The king has a ring.",
+"The ship is big.",
+"I can zip my bag."
+]
+},
+
+{
+title:"Short O - Orange 🍊",
+words:"dog box pot top mom hot log fox pop sock",
+sentences:[
+"The dog is hot.",
+"Mom has a box.",
+"The fox is on the log.",
+"The pot is hot.",
+"The sock is on top of the box."
+]
+},
+
+{
+title:"Short U - Umbrella ☂️",
+words:"sun bus cup bun duck run fun cut bug up",
+sentences:[
+"The duck can run.",
+"The sun is up.",
+"The bus is fun.",
+"I cut the bun.",
+"The bug is in the cup."
+]
+},
+
+{
+title:"Long A - A_E",
+words:"cake name lake game plane make take tape grape brave",
+sentences:[
+"I can make a cake.",
+"The plane is at the lake.",
+"This is a fun game.",
+"My name is on the tape.",
+"I take a grape to the lake."
+]
+},
+
+{
+title:"Long A - AI",
+words:"rain train mail wait paint sail tail chain brain snail",
+sentences:[
+"The rain is on the train.",
+"I wait for the mail.",
+"I can paint a snail.",
+"The train is late.",
+"A snail has a trail."
+]
+},
+
+{
+title:"Long A - AY",
+words:"play day say stay tray gray spray clay",
+sentences:[
+"I play every day.",
+"We stay and play.",
+"Please say it again.",
+"The tray is gray.",
+"I play in the rain today."
+]
+},
+
+{
+title:"Long E - EE",
+words:"see tree green sheep sleep feet street queen teeth",
+sentences:[
+"I see a green tree.",
+"The sheep can sleep.",
+"My feet are clean.",
+"The queen has a green dress.",
+"We see three sheep."
+]
+},
+
+{
+title:"Long E - EA",
+words:"eat read sea team dream clean beach peach",
+sentences:[
+"We eat peaches.",
+"I read by the sea.",
+"The team is clean.",
+"I dream of the beach.",
+"Please clean your seat."
+]
+},
+
+{
+title:"Long I - I_E",
+words:"bike kite five nine time ride smile white",
+sentences:[
+"I ride my bike.",
+"The kite is white.",
+"It is time to smile.",
+"I have five white kites.",
+"We ride at nine."
+]
+},
+
+{
+title:"Long I - IGH",
+words:"light night bright high sky fly cry try",
+sentences:[
+"The stars shine at night.",
+"The light is bright.",
+"Birds fly high in the sky.",
+"I try to fly my kite.",
+"The sky is bright tonight."
+]
+},
+
+{
+title:"Long O - O_E",
+words:"home nose rose hope rope stone those",
+sentences:[
+"I hope to go home.",
+"The rose is red.",
+"I can use the rope.",
+"Those stones are at home.",
+"The note is on the phone."
+]
+},
+
+{
+title:"Long O - OA",
+words:"boat coat road soap goat snow grow window",
+sentences:[
+"The goat is on the road.",
+"I see a boat.",
+"Put on your coat.",
+"The snow is slow to melt.",
+"We row the boat."
+]
+},
+
+{
+title:"Long U - U_E",
+words:"cube cute tube mule June use tune",
+sentences:[
+"The cube is cute.",
+"I use the tube.",
+"The mule is cute.",
+"June is a warm month.",
+"I can hum a tune."
+]
+},
+
+{
+title:"Long U - UE / EW",
+words:"blue glue true clue new few grew chew",
+sentences:[
+"The sky is blue.",
+"I have a clue.",
+"We saw a new toy.",
+"A few flowers grew.",
+"Use the blue glue."
+]
+},
+
+{
+title:"Long OO - Moon 🌙",
+words:"moon spoon cool soon food pool room zoo",
+sentences:[
+"The moon is bright.",
+"I eat with a spoon.",
+"The water is cool.",
+"The food is in the room.",
+"We will go to the zoo soon."
+]
+},
+
+{
+title:"Short OO - Book 📖",
+words:"book foot look good cook took wood wool",
+sentences:[
+"I read a good book.",
+"Look at my foot.",
+"The cook is good.",
+"I took the book.",
+"The wood is in the room."
+]
+}
+
+];
+
+function renderLessons(){
+
+let container=document.getElementById("lessons");
+
+lessons.forEach((lesson,index)=>{
+
+let card=document.createElement("div");
+card.className="card";
+
+let html="<h2>🔤 "+lesson.title+"</h2>";
+html+="<p>Listen and Repeat!</p>";
+
+lesson.words.split(" ").forEach(word=>{
+
+allWords.push(word);
+
+html+=`
+<div class="word">
+<b>${word}</b><br>
+<button onclick="speak('${word}')">🔊 Listen</button>
+</div>`;
+
+});
+
+html+="<h3>📖 Five Sentences</h3>";
+
+lesson.sentences.forEach((sentence,i)=>{
+
+html+=`
+<div class="sentence">
+${i+1}. ${sentence}
+<button onclick="speak('${sentence}')">🔊</button>
+</div>`;
+
+});
+
+html+=`
+<button class="green" onclick="readAll(${index})">
+🔊 Listen to All Sentences
+</button>`;
+
+card.innerHTML=html;
+container.appendChild(card);
+
+});
+
+}
+
+function readAll(index){
+let sentences=lessons[index].sentences;
+let i=0;
+function next(){
+if(i<sentences.length){
+let sentence=sentences[i++];
+speak(sentence);
+setTimeout(next,Math.max(2500,sentence.length*120));
+}
+}
+next();
+}
+
+function startQuiz(){
+
+currentWord=allWords[Math.floor(Math.random()*allWords.length)];
+
+let options=[currentWord];
+
+while(options.length<3){
+let w=allWords[Math.floor(Math.random()*allWords.length)];
+if(!options.includes(w))options.push(w);
+}
+
+options.sort(()=>Math.random()-.5);
+
+document.getElementById("question").innerText=
+"Listen! What did Dino say?";
+
+let box=document.getElementById("answers");
+box.innerHTML="";
+
+options.forEach(word=>{
+let b=document.createElement("button");
+b.innerText=word;
+b.onclick=()=>{
+if(word===currentWord){
+document.getElementById("result").innerText="Correct! Great job! ⭐";
+addStar();
+speak("Correct! Great job!");
+}else{
+document.getElementById("result").innerText="Try again!";
+speak(currentWord);
+}
+};
+box.appendChild(b);
+});
+
+document.getElementById("result").innerText="";
+speak(currentWord);
+}
+
+function repeatQuiz(){
+if(currentWord)speak(currentWord);
+}
+
+const challengePairs=[
+["cat","cake"],["hat","name"],["tap","tape"],
+["pin","pine"],["kit","kite"],["bit","bite"],
+["hop","hope"],["not","note"],["mop","mope"],
+["cub","cube"],["cut","cute"],["tub","tube"]
+];
+
+let challengeWord="";
+
+function startChallenge(){
+
+let pair=challengePairs[Math.floor(Math.random()*challengePairs.length)];
+challengeWord=pair[Math.floor(Math.random()*2)];
+
+let options=[...pair];
+options.sort(()=>Math.random()-.5);
+
+document.getElementById("challengeQuestion").innerText=
+"Listen carefully. Which word did Dino say?";
+
+let box=document.getElementById("challengeButtons");
+box.innerHTML="";
+
+options.forEach(word=>{
+let b=document.createElement("button");
+b.innerText=word;
+b.onclick=()=>{
+if(word===challengeWord){
+document.getElementById("challengeResult").innerText=
+"Amazing! Correct! ⭐";
+addStar();
+speak("Amazing! Correct!");
+}else{
+document.getElementById("challengeResult").innerText=
+"Try again!";
+speak(challengeWord);
+}
+};
+box.appendChild(b);
+});
+
+speak(challengeWord);
+}
+
+function nextFlash(){
+flashIndex=(flashIndex+1)%allWords.length;
+let word=allWords[flashIndex];
+document.getElementById("flashWord").innerText=word;
+speak(word);
+}
+
+renderLessons();
+
 </script>
 </body>
-</html>
+</htmlالإنجليزية المثبتة على 
